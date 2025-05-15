@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://b63g5x5xad1nd"]
+
+[ext_resource type="Texture2D" uid="uid://pr3pfv4qcgd7" path="res://ui/controls/p1_controls/keyboard_arrow_right_outline.svg" id="1_yj4vh"]
+[ext_resource type="Texture2D" uid="uid://bn4004cjhf6jg" path="res://ui/controls/p1_controls/keyboard_arrow_right.svg" id="2_qquut"]
+[ext_resource type="Texture2D" uid="uid://di866g20j4qtx" path="res://ui/controls/p1_controls/keyboard_arrow_up_outline.svg" id="3_cy0g4"]
+[ext_resource type="Texture2D" uid="uid://bc6b3oxwrn8pr" path="res://ui/controls/p1_controls/keyboard_arrow_left_outline.svg" id="4_6gf25"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ryiud"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_yj4vh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qquut")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Player1Right" type="Node2D"]
+
+[node name="KeyboardArrowRight" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.5, 0.5, 0.5, 1)
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_ryiud")
+autoplay = "default"
+offset = Vector2(139.2, 0)
+
+[node name="KeyboardArrowUpOutline" type="Sprite2D" parent="."]
+modulate = Color(0.5, 0.5, 0.5, 1)
+texture_filter = 1
+texture = ExtResource("3_cy0g4")
+offset = Vector2(69.6, -69.6)
+
+[node name="KeyboardArrowLeftOutline" type="Sprite2D" parent="."]
+modulate = Color(0.5, 0.5, 0.5, 1)
+texture_filter = 1
+texture = ExtResource("4_6gf25")

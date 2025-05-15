@@ -1,0 +1,286 @@
+[gd_scene load_steps=6 format=3 uid="uid://fpl577nksydh"]
+
+[ext_resource type="Script" path="res://scenes/game/levels/level_1_man.gd" id="1_385ig"]
+[ext_resource type="Texture2D" uid="uid://bwsvqdhlkgcp2" path="res://assets/level_1_choice.svg" id="2_82blx"]
+[ext_resource type="PackedScene" uid="uid://bf6nxgxciqhpe" path="res://scenes/scene_transition.tscn" id="4_lnheh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_drjle"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.627451, 0.858824, 0.266667, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yjkjt"]
+
+[node name="Level1Man" type="Node2D"]
+script = ExtResource("1_385ig")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_82blx")
+
+[node name="SceneTransition" parent="." instance=ExtResource("4_lnheh")]
+
+[node name="ABCButtons" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ButtonA" type="Button" parent="ABCButtons"]
+layout_mode = 0
+offset_left = 466.0
+offset_top = 104.0
+offset_right = 607.0
+offset_bottom = 245.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_drjle")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yjkjt")
+
+[node name="ButtonB" type="Button" parent="ABCButtons"]
+layout_mode = 0
+offset_left = 678.0
+offset_top = 104.0
+offset_right = 819.0
+offset_bottom = 245.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_drjle")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yjkjt")
+
+[node name="ButtonC" type="Button" parent="ABCButtons"]
+layout_mode = 0
+offset_left = 890.0
+offset_top = 104.0
+offset_right = 1031.0
+offset_bottom = 245.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_drjle")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yjkjt")
+
+[node name="ButtonD" type="Button" parent="ABCButtons"]
+layout_mode = 0
+offset_left = 1101.0
+offset_top = 104.0
+offset_right = 1242.0
+offset_bottom = 245.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_drjle")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yjkjt")
+
+[node name="ButtonE" type="Button" parent="ABCButtons"]
+layout_mode = 0
+offset_left = 1313.0
+offset_top = 104.0
+offset_right = 1454.0
+offset_bottom = 245.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_drjle")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yjkjt")
+
+[node name="ButtonF" type="Button" parent="ABCButtons"]
+layout_mode = 0
+offset_left = 466.0
+offset_top = 287.0
+offset_right = 607.0
+offset_bottom = 428.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_drjle")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yjkjt")
+
+[node name="ButtonG" type="Button" parent="ABCButtons"]
+layout_mode = 0
+offset_left = 678.0
+offset_top = 287.0
+offset_right = 819.0
+offset_bottom = 428.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_drjle")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yjkjt")
+
+[node name="ButtonH" type="Button" parent="ABCButtons"]
+layout_mode = 0
+offset_left = 890.0
+offset_top = 287.0
+offset_right = 1031.0
+offset_bottom = 428.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_drjle")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yjkjt")
+
+[node name="ButtonI" type="Button" parent="ABCButtons"]
+layout_mode = 0
+offset_left = 1101.0
+offset_top = 287.0
+offset_right = 1242.0
+offset_bottom = 428.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_drjle")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yjkjt")
+
+[node name="ButtonJ" type="Button" parent="ABCButtons"]
+layout_mode = 0
+offset_left = 1313.0
+offset_top = 287.0
+offset_right = 1454.0
+offset_bottom = 428.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_drjle")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yjkjt")
+
+[node name="ButtonK" type="Button" parent="ABCButtons"]
+layout_mode = 0
+offset_left = 466.0
+offset_top = 469.0
+offset_right = 607.0
+offset_bottom = 610.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_drjle")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yjkjt")
+
+[node name="ButtonL" type="Button" parent="ABCButtons"]
+layout_mode = 0
+offset_left = 678.0
+offset_top = 469.0
+offset_right = 819.0
+offset_bottom = 610.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_drjle")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yjkjt")
+
+[node name="ButtonM" type="Button" parent="ABCButtons"]
+layout_mode = 0
+offset_left = 890.0
+offset_top = 469.0
+offset_right = 1031.0
+offset_bottom = 610.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_drjle")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yjkjt")
+
+[node name="ButtonN" type="Button" parent="ABCButtons"]
+layout_mode = 0
+offset_left = 1101.0
+offset_top = 469.0
+offset_right = 1242.0
+offset_bottom = 610.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_drjle")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yjkjt")
+
+[node name="ButtonO" type="Button" parent="ABCButtons"]
+layout_mode = 0
+offset_left = 1313.0
+offset_top = 469.0
+offset_right = 1454.0
+offset_bottom = 610.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_drjle")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yjkjt")
+
+[node name="ButtonP" type="Button" parent="ABCButtons"]
+layout_mode = 0
+offset_left = 466.0
+offset_top = 652.0
+offset_right = 607.0
+offset_bottom = 793.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_drjle")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yjkjt")
+
+[node name="ButtonQ" type="Button" parent="ABCButtons"]
+layout_mode = 0
+offset_left = 678.0
+offset_top = 652.0
+offset_right = 819.0
+offset_bottom = 793.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_drjle")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yjkjt")
+
+[node name="ButtonR" type="Button" parent="ABCButtons"]
+layout_mode = 0
+offset_left = 890.0
+offset_top = 652.0
+offset_right = 1031.0
+offset_bottom = 793.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_drjle")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yjkjt")
+
+[node name="ButtonS" type="Button" parent="ABCButtons"]
+layout_mode = 0
+offset_left = 1101.0
+offset_top = 652.0
+offset_right = 1242.0
+offset_bottom = 793.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_drjle")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yjkjt")
+
+[node name="ButtonT" type="Button" parent="ABCButtons"]
+layout_mode = 0
+offset_left = 1313.0
+offset_top = 652.0
+offset_right = 1454.0
+offset_bottom = 793.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_drjle")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yjkjt")
+
+[node name="ButtonU" type="Button" parent="ABCButtons"]
+layout_mode = 0
+offset_left = 466.0
+offset_top = 835.0
+offset_right = 607.0
+offset_bottom = 976.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_drjle")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yjkjt")
+
+[node name="ButtonV" type="Button" parent="ABCButtons"]
+layout_mode = 0
+offset_left = 678.0
+offset_top = 835.0
+offset_right = 819.0
+offset_bottom = 976.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_drjle")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yjkjt")
+
+[node name="ButtonW" type="Button" parent="ABCButtons"]
+layout_mode = 0
+offset_left = 890.0
+offset_top = 835.0
+offset_right = 1031.0
+offset_bottom = 976.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_drjle")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yjkjt")
+
+[node name="ButtonY" type="Button" parent="ABCButtons"]
+layout_mode = 0
+offset_left = 1101.0
+offset_top = 835.0
+offset_right = 1242.0
+offset_bottom = 976.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_drjle")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yjkjt")
+
+[node name="ButtonZ" type="Button" parent="ABCButtons"]
+layout_mode = 0
+offset_left = 1313.0
+offset_top = 835.0
+offset_right = 1454.0
+offset_bottom = 976.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_drjle")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yjkjt")
+
+[connection signal="pressed" from="ABCButtons/ButtonA" to="." method="_on_button_a_pressed"]
+[connection signal="pressed" from="ABCButtons/ButtonB" to="." method="_on_button_b_pressed"]
+[connection signal="pressed" from="ABCButtons/ButtonC" to="." method="_on_button_c_pressed"]
+[connection signal="pressed" from="ABCButtons/ButtonD" to="." method="_on_button_d_pressed"]
+[connection signal="pressed" from="ABCButtons/ButtonE" to="." method="_on_button_e_pressed"]
+[connection signal="pressed" from="ABCButtons/ButtonF" to="." method="_on_button_f_pressed"]
+[connection signal="pressed" from="ABCButtons/ButtonG" to="." method="_on_button_g_pressed"]
+[connection signal="pressed" from="ABCButtons/ButtonH" to="." method="_on_button_h_pressed"]
+[connection signal="pressed" from="ABCButtons/ButtonI" to="." method="_on_button_i_pressed"]
+[connection signal="pressed" from="ABCButtons/ButtonJ" to="." method="_on_button_j_pressed"]
+[connection signal="pressed" from="ABCButtons/ButtonK" to="." method="_on_button_k_pressed"]
+[connection signal="pressed" from="ABCButtons/ButtonL" to="." method="_on_button_l_pressed"]
+[connection signal="pressed" from="ABCButtons/ButtonM" to="." method="_on_button_m_pressed"]
+[connection signal="pressed" from="ABCButtons/ButtonN" to="." method="_on_button_n_pressed"]
+[connection signal="pressed" from="ABCButtons/ButtonO" to="." method="_on_button_o_pressed"]
+[connection signal="pressed" from="ABCButtons/ButtonP" to="." method="_on_button_p_pressed"]
+[connection signal="pressed" from="ABCButtons/ButtonQ" to="." method="_on_button_q_pressed"]
+[connection signal="pressed" from="ABCButtons/ButtonR" to="." method="_on_button_r_pressed"]
+[connection signal="pressed" from="ABCButtons/ButtonS" to="." method="_on_button_s_pressed"]
+[connection signal="pressed" from="ABCButtons/ButtonT" to="." method="_on_button_t_pressed"]
+[connection signal="pressed" from="ABCButtons/ButtonU" to="." method="_on_button_u_pressed"]
+[connection signal="pressed" from="ABCButtons/ButtonV" to="." method="_on_button_v_pressed"]
+[connection signal="pressed" from="ABCButtons/ButtonW" to="." method="_on_button_w_pressed"]
+[connection signal="pressed" from="ABCButtons/ButtonY" to="." method="_on_button_y_pressed"]
+[connection signal="pressed" from="ABCButtons/ButtonZ" to="." method="_on_button_z_pressed"]

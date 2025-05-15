@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://b3jo8tkad55rq"]
+
+[ext_resource type="Texture2D" uid="uid://pr3pfv4qcgd7" path="res://ui/controls/p1_controls/keyboard_arrow_right_outline.svg" id="1_jv8wl"]
+[ext_resource type="Texture2D" uid="uid://di866g20j4qtx" path="res://ui/controls/p1_controls/keyboard_arrow_up_outline.svg" id="2_ycsdr"]
+[ext_resource type="Texture2D" uid="uid://b0vtqsm7nyvae" path="res://ui/controls/p1_controls/keyboard_arrow_up.svg" id="3_5xh4u"]
+[ext_resource type="Texture2D" uid="uid://bc6b3oxwrn8pr" path="res://ui/controls/p1_controls/keyboard_arrow_left_outline.svg" id="3_pwrbl"]
+[ext_resource type="Texture2D" uid="uid://bn4004cjhf6jg" path="res://ui/controls/p1_controls/keyboard_arrow_right.svg" id="4_txgxm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y82p2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ycsdr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5xh4u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_irbk4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_jv8wl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_txgxm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Player1Jump" type="Node2D"]
+
+[node name="KeyboardArrowUpOutline" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.5, 0.5, 0.5, 1)
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_y82p2")
+autoplay = "default"
+offset = Vector2(69.6, -69.6)
+
+[node name="KeyboardArrowLeftOutline" type="Sprite2D" parent="."]
+modulate = Color(0.5, 0.5, 0.5, 1)
+texture_filter = 1
+texture = ExtResource("3_pwrbl")
+
+[node name="KeyboardArrowRight" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.5, 0.5, 0.5, 1)
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_irbk4")
+autoplay = "default"
+offset = Vector2(139.2, 0)

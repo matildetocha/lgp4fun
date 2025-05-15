@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://dl3cww3bwd5c3"]
+
+[ext_resource type="Texture2D" uid="uid://ctex2y5r8y73m" path="res://ui/button_round_line.png" id="1_ciyrv"]
+[ext_resource type="Texture2D" uid="uid://bvyetou50p1cj" path="res://assets/HUD/hud_heartFull.png" id="2_tmxkq"]
+[ext_resource type="FontFile" uid="uid://cfvn1vpqdthnr" path="res://ui/fonts/Kenney Future Narrow.ttf" id="3_5dthh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cxnnl"]
+bg_color = Color(0, 0, 0, 0.392157)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_usefy"]
+texture = ExtResource("1_ciyrv")
+
+[node name="HealthPanel" type="Panel"]
+offset_right = 170.0
+offset_bottom = 60.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cxnnl")
+
+[node name="HeartPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -30.0
+offset_right = 60.0
+offset_bottom = 30.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_usefy")
+
+[node name="HeartImage" type="TextureRect" parent="HeartPanel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -19.0
+offset_right = 19.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_tmxkq")
+expand_mode = 1
+
+[node name="HealthLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = -49.0
+offset_bottom = 49.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_5dthh")
+theme_override_font_sizes/font_size = 60
+text = "6"
+horizontal_alignment = 1
+vertical_alignment = 1

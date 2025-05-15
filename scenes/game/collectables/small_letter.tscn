@@ -1,0 +1,92 @@
+[gd_scene load_steps=7 format=3 uid="uid://fx0pn2vkis2y"]
+
+[ext_resource type="Script" path="res://scenes/game/collectables/small_letter.gd" id="1_a6kwp"]
+[ext_resource type="FontFile" uid="uid://ctjfejh0k1qua" path="res://ui/fonts/Primeiro_Ciclo.ttf" id="2_ejnfa"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fml0j"]
+radius = 16.0
+height = 80.0
+
+[sub_resource type="Animation" id="Animation_txmuw"]
+resource_name = "blink"
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 0, 0.509804), Color(1, 1, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_k1hr4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bnnxy"]
+_data = {
+"RESET": SubResource("Animation_k1hr4"),
+"blink": SubResource("Animation_txmuw")
+}
+
+[node name="SmallLetter" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_a6kwp")
+
+[node name="Label" type="Label" parent="."]
+clip_children = 2
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.5
+offset_top = -32.0
+offset_right = 4.5
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ejnfa")
+theme_override_font_sizes/font_size = 80
+text = "l"
+
+[node name="ColorRect" type="ColorRect" parent="Label"]
+layout_mode = 0
+offset_left = -38.0
+offset_top = 5.5
+offset_right = 54.0
+offset_bottom = 125.5
+color = Color(1, 1, 0, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 15)
+shape = SubResource("CapsuleShape2D_fml0j")
+
+[node name="Effects" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bnnxy")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

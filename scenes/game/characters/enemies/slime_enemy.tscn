@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://bxiybexg1763f"]
+
+[ext_resource type="Script" path="res://scenes/game/characters/enemies/slime_enemy.gd" id="1_vf3oe"]
+[ext_resource type="Texture2D" uid="uid://b5vkhpfbp4lvg" path="res://assets/enemies/worm.png" id="2_8uplj"]
+[ext_resource type="Texture2D" uid="uid://dpdsoxxunrxa1" path="res://assets/enemies/worm_dead.png" id="3_3tihf"]
+[ext_resource type="Texture2D" uid="uid://drnlhnvxt02re" path="res://assets/enemies/worm_hit.png" id="4_m8crk"]
+[ext_resource type="Texture2D" uid="uid://txaqc8nwglsc" path="res://assets/enemies/worm_walk.png" id="5_u7erl"]
+[ext_resource type="PackedScene" uid="uid://btk3nk7qkisql" path="res://scenes/game/characters/enemies/hitbox.tscn" id="6_ailc5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tusa7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_3tihf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_m8crk")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8uplj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_u7erl")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 2.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1ea55"]
+radius = 12.0
+height = 64.0
+
+[node name="SlimeEnemy" type="CharacterBody2D"]
+collision_layer = 6
+script = ExtResource("1_vf3oe")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tusa7")
+animation = &"hit"
+autoplay = "walking"
+frame_progress = 0.920021
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_1ea55")
+
+[node name="LedgeCheckRight" type="RayCast2D" parent="."]
+position = Vector2(29, 9)
+target_position = Vector2(0, 8)
+
+[node name="LedgeCheckLeft" type="RayCast2D" parent="."]
+position = Vector2(-29, 8)
+target_position = Vector2(0, 8)
+
+[node name="Hitbox" parent="." instance=ExtResource("6_ailc5")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_1ea55")

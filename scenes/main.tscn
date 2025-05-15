@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://cjx8mg0fuaw4"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_meb4d"]
+[ext_resource type="PackedScene" uid="uid://bf6nxgxciqhpe" path="res://scenes/scene_transition.tscn" id="2_7kk6v"]
+[ext_resource type="PackedScene" uid="uid://b6otflnml2l6j" path="res://scenes/game/game.tscn" id="2_wog5q"]
+[ext_resource type="Texture2D" uid="uid://bv0ixfuw4mcl3" path="res://assets/lgp4fun_main.svg" id="3_3ehck"]
+[ext_resource type="Texture2D" uid="uid://bkws5pbb8cs20" path="res://ui/controls/icon_play_outline.png" id="4_ktuv2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0ghw1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pqhox"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fvc5o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o3uwi"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_meb4d")
+game_scene = ExtResource("2_wog5q")
+
+[node name="SceneTransition" parent="." instance=ExtResource("2_7kk6v")]
+
+[node name="Title" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Title" type="TextureRect" parent="Title"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 1900.0
+offset_bottom = 1060.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_3ehck")
+
+[node name="Button" type="Button" parent="Title"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 887.0
+offset_top = 888.0
+offset_right = 993.0
+offset_bottom = 989.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 3
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0ghw1")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_pqhox")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_fvc5o")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_o3uwi")
+icon = ExtResource("4_ktuv2")
+icon_alignment = 1
+
+[connection signal="pressed" from="Title/Button" to="." method="_on_start_pressed"]
