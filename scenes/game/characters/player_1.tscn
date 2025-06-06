@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dki183wo1005q"]
+[gd_scene load_steps=23 format=3 uid="uid://dki183wo1005q"]
 
 [ext_resource type="Script" path="res://scenes/game/characters/player_1.gd" id="1_3xqqc"]
 [ext_resource type="Texture2D" uid="uid://cyeahc2ds40tg" path="res://assets/player/p1_stand.png" id="2_tdv2m"]
@@ -84,6 +84,10 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_skc3j"]
 radius = 22.0
 height = 84.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jq7te"]
+radius = 32.0
+height = 94.0
 
 [sub_resource type="Animation" id="Animation_82ysm"]
 length = 0.001
@@ -174,8 +178,8 @@ collision_layer = 0
 collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(0, 4)
-shape = SubResource("CapsuleShape2D_skc3j")
+position = Vector2(-1, 0)
+shape = SubResource("CapsuleShape2D_jq7te")
 
 [node name="Effects" type="AnimationPlayer" parent="."]
 libraries = {

@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.3", "Mobile")
 [autoload]
 
 GameManager="*res://scenes/game/game_manager.gd"
+Supabase="*res://addons/supabase/Supabase/supabase.gd"
 
 [display]
 
@@ -29,7 +30,7 @@ window/layer_4=""
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/supabase/plugin.cfg")
 
 [global_group]
 

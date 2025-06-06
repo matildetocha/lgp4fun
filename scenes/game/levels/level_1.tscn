@@ -43,7 +43,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pcfcr"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_06n5a"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w72vc"]
 texture = ExtResource("8_prolu")
 texture_region_size = Vector2i(70, 70)
 0:0/0 = 0
@@ -55,7 +55,7 @@ texture_region_size = Vector2i(70, 70)
 
 [sub_resource type="TileSet" id="TileSet_p27vp"]
 tile_size = Vector2i(70, 70)
-sources/6 = SubResource("TileSetAtlasSource_06n5a")
+sources/6 = SubResource("TileSetAtlasSource_w72vc")
 tile_proxies/coords_level = [[0, Vector2i(0, 0)], [6, Vector2i(0, 0)], [1, Vector2i(0, 0)], [6, Vector2i(1, 0)], [2, Vector2i(0, 0)], [6, Vector2i(2, 0)], [3, Vector2i(0, 0)], [6, Vector2i(0, 1)], [4, Vector2i(0, 0)], [6, Vector2i(1, 1)], [5, Vector2i(0, 0)], [6, Vector2i(2, 1)]]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_bkag2"]
@@ -70,7 +70,7 @@ tile_data = PackedInt32Array(0, 458752, 9, 1, 458752, 8, 2, 458752, 7)
 [sub_resource type="TileMapPattern" id="TileMapPattern_ht0vl"]
 tile_data = PackedInt32Array(0, 524288, 5, 1, 524288, 4, 2, 524288, 3)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l1tpb"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t3amj"]
 texture = ExtResource("9_5nqy7")
 separation = Vector2i(2, 2)
 texture_region_size = Vector2i(70, 70)
@@ -350,13 +350,13 @@ texture_region_size = Vector2i(70, 70)
 tile_size = Vector2i(70, 70)
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 3
-sources/0 = SubResource("TileSetAtlasSource_l1tpb")
+sources/0 = SubResource("TileSetAtlasSource_t3amj")
 pattern_0 = SubResource("TileMapPattern_bkag2")
 pattern_1 = SubResource("TileMapPattern_7jl6a")
 pattern_2 = SubResource("TileMapPattern_lnvg5")
 pattern_3 = SubResource("TileMapPattern_ht0vl")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0r6gd"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cp44y"]
 texture = ExtResource("10_jsotk")
 texture_region_size = Vector2i(70, 70)
 0:0/0 = 0
@@ -368,7 +368,7 @@ texture_region_size = Vector2i(70, 70)
 2:1/0 = 0
 3:1/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lbbtg"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q46wv"]
 texture = ExtResource("11_jrsn5")
 texture_region_size = Vector2i(70, 70)
 0:0/0 = 0
@@ -405,7 +405,7 @@ texture_region_size = Vector2i(70, 70)
 1:6/0 = 0
 2:6/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r1j3n"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fmapl"]
 texture = ExtResource("12_webxr")
 texture_region_size = Vector2i(70, 70)
 0:0/0 = 0
@@ -417,7 +417,7 @@ texture_region_size = Vector2i(70, 70)
 2:1/0 = 0
 3:1/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6vqpf"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kyw8c"]
 texture = ExtResource("13_xqbbo")
 texture_region_size = Vector2i(70, 70)
 0:0/0 = 0
@@ -425,7 +425,7 @@ texture_region_size = Vector2i(70, 70)
 2:0/0 = 0
 3:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kypis"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xf5wq"]
 texture = ExtResource("14_oyn6x")
 texture_region_size = Vector2i(128, 71)
 0:0/0 = 0
@@ -434,11 +434,11 @@ texture_region_size = Vector2i(128, 71)
 
 [sub_resource type="TileSet" id="TileSet_qiibp"]
 tile_size = Vector2i(70, 70)
-sources/0 = SubResource("TileSetAtlasSource_0r6gd")
-sources/1 = SubResource("TileSetAtlasSource_lbbtg")
-sources/2 = SubResource("TileSetAtlasSource_6vqpf")
-sources/6 = SubResource("TileSetAtlasSource_kypis")
-sources/19 = SubResource("TileSetAtlasSource_r1j3n")
+sources/0 = SubResource("TileSetAtlasSource_cp44y")
+sources/1 = SubResource("TileSetAtlasSource_q46wv")
+sources/2 = SubResource("TileSetAtlasSource_kyw8c")
+sources/6 = SubResource("TileSetAtlasSource_xf5wq")
+sources/19 = SubResource("TileSetAtlasSource_fmapl")
 tile_proxies/coords_level = [[3, Vector2i(0, 0)], [6, Vector2i(0, 0)], [4, Vector2i(0, 0)], [6, Vector2i(1, 0)], [5, Vector2i(0, 0)], [6, Vector2i(2, 0)], [7, Vector2i(0, 0)], [19, Vector2i(0, 0)], [8, Vector2i(0, 0)], [19, Vector2i(1, 0)], [9, Vector2i(0, 0)], [19, Vector2i(2, 0)], [10, Vector2i(0, 0)], [19, Vector2i(3, 0)], [11, Vector2i(0, 0)], [19, Vector2i(0, 1)], [12, Vector2i(0, 0)], [19, Vector2i(1, 1)], [13, Vector2i(0, 0)], [19, Vector2i(2, 1)], [18, Vector2i(0, 0)], [19, Vector2i(3, 1)]]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_w4gjj"]
@@ -537,7 +537,7 @@ script = ExtResource("15_8ydon")
 
 [node name="Player2FallArea" type="Area2D" parent="TerrainAreas"]
 position = Vector2(3882, 519)
-collision_mask = 3
+collision_mask = 2
 script = ExtResource("33_waefq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TerrainAreas/Player2FallArea"]
@@ -545,7 +545,7 @@ shape = SubResource("WorldBoundaryShape2D_w4gjj")
 
 [node name="Player1FallArea" type="Area2D" parent="TerrainAreas"]
 position = Vector2(4515, 1120)
-collision_mask = 3
+collision_mask = 2
 script = ExtResource("34_nftjd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TerrainAreas/Player1FallArea"]
@@ -871,14 +871,12 @@ position = Vector2(10075, 763)
 [node name="BeeEnemy10" parent="Enemies/Bee" instance=ExtResource("24_xdskm")]
 position = Vector2(15794, 128)
 
-[node name="Players" type="Node2D" parent="."]
-
-[node name="Player1" parent="Players" instance=ExtResource("29_l3ita")]
+[node name="Player1" parent="." instance=ExtResource("29_l3ita")]
 position = Vector2(350, 994)
 collision_layer = 2
 collision_mask = 257
 
-[node name="Player2" parent="Players" instance=ExtResource("30_85lag")]
+[node name="Player2" parent="." instance=ExtResource("30_85lag")]
 texture_filter = 1
 position = Vector2(350, 434)
 collision_layer = 2
@@ -897,9 +895,9 @@ metadata/_edit_lock_ = true
 [connection signal="pressed" from="UI/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="body_entered" from="TerrainAreas/Player2FallArea" to="TerrainAreas/Player2FallArea" method="_on_body_entered"]
 [connection signal="body_entered" from="TerrainAreas/Player1FallArea" to="TerrainAreas/Player1FallArea" method="_on_body_entered"]
-[connection signal="body_entered" from="TerrainAreas/MudAreas" to="Players/Player1" method="_on_mud_areas_body_entered"]
-[connection signal="body_entered" from="TerrainAreas/MudAreas" to="Players/Player2" method="_on_mud_areas_body_entered"]
-[connection signal="body_exited" from="TerrainAreas/MudAreas" to="Players/Player1" method="_on_mud_areas_body_exited"]
-[connection signal="body_exited" from="TerrainAreas/MudAreas" to="Players/Player2" method="_on_mud_areas_body_exited"]
+[connection signal="body_entered" from="TerrainAreas/MudAreas" to="Player1" method="_on_mud_areas_body_entered"]
+[connection signal="body_entered" from="TerrainAreas/MudAreas" to="Player2" method="_on_mud_areas_body_entered"]
+[connection signal="body_exited" from="TerrainAreas/MudAreas" to="Player1" method="_on_mud_areas_body_exited"]
+[connection signal="body_exited" from="TerrainAreas/MudAreas" to="Player2" method="_on_mud_areas_body_exited"]
 [connection signal="body_entered" from="Collectables/End/EndPlayer1" to="Collectables/End" method="_on_end_player_1_body_entered"]
 [connection signal="body_entered" from="Collectables/End/EndPlayer2" to="Collectables/End" method="_on_end_player_2_body_entered"]

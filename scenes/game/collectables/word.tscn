@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3gly2q4f5mhs"]
+
+[ext_resource type="FontFile" uid="uid://ctjfejh0k1qua" path="res://ui/fonts/Primeiro_Ciclo.ttf" id="1_03kq5"]
+[ext_resource type="Script" path="res://scenes/game/collectables/word.gd" id="1_3ku64"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i4ojd"]
+radius = 20.0
+height = 90.0
+
+[sub_resource type="Animation" id="Animation_7rchn"]
+resource_name = "blink"
+loop_mode = 2
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 0, 0.509804), Color(1, 1, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0sqd0"]
+_data = {
+"blink": SubResource("Animation_7rchn")
+}
+
+[node name="Word" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_3ku64")
+
+[node name="Label" type="Label" parent="."]
+clip_children = 2
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.5
+offset_top = -42.5
+offset_right = 16.5
+offset_bottom = 42.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_03kq5")
+theme_override_font_sizes/font_size = 80
+text = "mãe"
+
+[node name="ColorRect" type="ColorRect" parent="Label"]
+layout_mode = 0
+offset_left = -27.0
+offset_right = 103.0
+offset_bottom = 97.0
+color = Color(1, 1, 0, 0.509804)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 9)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_i4ojd")
+
+[node name="Effects" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0sqd0")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

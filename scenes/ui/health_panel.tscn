@@ -62,6 +62,6 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("3_5dthh")
 theme_override_font_sizes/font_size = 60
-text = "6"
+text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dw108it2mkskx"]
+
+[ext_resource type="Texture2D" uid="uid://c73i6dcswo2qs" path="res://assets/lgp4fun levels.svg" id="1_jgy0k"]
+
+[node name="LevelsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_jgy0k")

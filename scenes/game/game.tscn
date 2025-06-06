@@ -1,10 +1,136 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6otflnml2l6j"]
+[gd_scene load_steps=16 format=3 uid="uid://b6otflnml2l6j"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_xwhwq"]
 [ext_resource type="PackedScene" uid="uid://fpl577nksydh" path="res://scenes/game/levels/level_1_man.tscn" id="2_is6fr"]
+[ext_resource type="PackedScene" uid="uid://bswryckxpikb8" path="res://scenes/game/levels/level2/level_2.tscn" id="3_gumy1"]
+[ext_resource type="PackedScene" uid="uid://dw108it2mkskx" path="res://scenes/menu/main_menu.tscn" id="3_wtnip"]
+[ext_resource type="Texture2D" uid="uid://bf7rlms3i6pdp" path="res://ui/arrow_decorative_w_small.png" id="5_jy3l0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e5ptf"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.192157, 0.678431, 0.890196, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0cqtf"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.192157, 0.678431, 0.890196, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6aktd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hvc55"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.192157, 0.678431, 0.890196, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5chd"]
+bg_color = Color(0.6, 0.6, 0.6, 0.588235)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.45, 0.45, 0.45, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x5las"]
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.45098, 0.45098, 0.45098, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kaj1u"]
+bg_color = Color(0.6, 0.6, 0.6, 0.588235)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_62b73"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_css25"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rqfwa"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_xwhwq")
-start_scene = ExtResource("2_is6fr")
+level_1 = ExtResource("2_is6fr")
+level_2 = ExtResource("3_gumy1")
+
+[node name="LevelsMenu" parent="." instance=ExtResource("3_wtnip")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Level1Button" type="Button" parent="LevelsMenu"]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 366.0
+offset_right = 606.0
+offset_bottom = 1002.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_e5ptf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0cqtf")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6aktd")
+
+[node name="Level2Button" type="Button" parent="LevelsMenu"]
+layout_mode = 0
+offset_left = 718.0
+offset_top = 364.0
+offset_right = 1202.0
+offset_bottom = 1000.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_e5ptf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hvc55")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6aktd")
+
+[node name="Level3Button" type="Button" parent="LevelsMenu"]
+layout_mode = 0
+offset_left = 1314.0
+offset_top = 365.0
+offset_right = 1798.0
+offset_bottom = 1001.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_u5chd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_x5las")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kaj1u")
+
+[node name="BackButton" type="Button" parent="."]
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 98.0
+offset_bottom = 98.0
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_icons/icon = ExtResource("5_jy3l0")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_62b73")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_css25")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rqfwa")
 
 [node name="Levels" type="Node2D" parent="."]
+
+[connection signal="pressed" from="LevelsMenu/Level1Button" to="." method="_on_level_1_button_pressed"]
+[connection signal="pressed" from="LevelsMenu/Level2Button" to="." method="_on_level_2_button_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

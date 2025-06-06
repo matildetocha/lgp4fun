@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://do21ok7nxyfnv"]
+
+[ext_resource type="Script" path="res://scenes/game/characters/enemies/bee_enemy.gd" id="1_1qjd1"]
+[ext_resource type="Texture2D" uid="uid://dqv7cvpecc373" path="res://assets/enemies/ghost_normal.png" id="2_dsgop"]
+[ext_resource type="Texture2D" uid="uid://ccwhlroi1dk11" path="res://assets/enemies/ghost.png" id="3_tyl8w"]
+[ext_resource type="PackedScene" uid="uid://btk3nk7qkisql" path="res://scenes/game/characters/enemies/hitbox.tscn" id="4_f4kdh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nbqsy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_dsgop")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tyl8w")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 2.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n2mg5"]
+radius = 26.0
+height = 72.0
+
+[node name="GhostEnemy" type="CharacterBody2D"]
+collision_layer = 6
+script = ExtResource("1_1qjd1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nbqsy")
+animation = &"flying"
+autoplay = "flying"
+frame_progress = 0.397237
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("CapsuleShape2D_n2mg5")
+
+[node name="Hitbox" parent="." instance=ExtResource("4_f4kdh")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(1, 0)
+shape = SubResource("CapsuleShape2D_n2mg5")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

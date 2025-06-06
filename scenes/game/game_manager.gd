@@ -13,19 +13,21 @@ var health = MAX_HEALTH
 
 # Level vars
 var level1_letter: String
+var level2_theme: String
+var level2_stats = []
+
+var console = JavaScriptBridge.get_interface("console")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:	
 	pass
-	
+
 func get_level1_letter() -> String:
 	return level1_letter
 	
 func set_level1_letter(letter: String) -> void:
 	level1_letter = letter
-	if OS.has_feature("web"):
-		JavaScriptBridge.eval("window.onLetterSelected('" + level1_letter + "');")
-	
+
 func get_big_points() -> int:
 	return big_points
 
@@ -57,8 +59,10 @@ func reduce_health() -> void:
 func add_health() -> void:
 	if (health + 1 <= MAX_HEALTH):
 		health += 1
-	
 
+func set_level2_stats(stats) -> void:
+	level2_stats = stats
+	
 func reset() -> void:
 	big_points = 0
 	small_points = 0

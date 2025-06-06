@@ -1,7 +1,7 @@
 extends Area2D
 
 @onready var checkpoint_manager = $".."
-@onready var player_2: CharacterBody2D = $"../../Players/Player2"
+@onready var player_2: CharacterBody2D = $"../../Player2"
 
 func _on_body_entered(body: Node2D) -> void:
 	if (body.name == "Player2"):

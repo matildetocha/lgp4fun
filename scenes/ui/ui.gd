@@ -1,7 +1,5 @@
 extends CanvasLayer
 
-@onready var level_letter = GameManager.get_level1_letter()
-
 # Points
 @onready var health_points_label: Label = $HealthPanel/HealthLabel
 

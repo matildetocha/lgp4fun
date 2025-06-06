@@ -1,7 +1,5 @@
 extends Node2D
 
-signal goto_main
-
 @onready var scene_transition: AnimationPlayer = $SceneTransition/AnimationPlayer
 
 var level_1_scene: PackedScene = preload("res://scenes/game/levels/level_1.tscn")
@@ -22,10 +20,6 @@ func _ready() -> void:
 	level_1.connect("go_back", go_back)
 	
 	GameManager.connect("game_over", game_over_level1)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func _on_button_a_pressed() -> void:
 	GameManager.set_level1_letter("a")
@@ -185,12 +179,4 @@ func go_back() -> void:
 	
 func end_level() -> void:
 	GameManager.reset()
-
 	queue_free()
-	
-	goto_main.emit()
-
-
-	
-
-	
