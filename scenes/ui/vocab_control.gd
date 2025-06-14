@@ -14,7 +14,7 @@ extends Container
 @onready var word: Label = $HBoxContainer/Right/Label
 @onready var right_color_rect: ColorRect = $HBoxContainer/Right/ColorRect
 @onready var right_check_icon: TextureRect = $HBoxContainer/Right/CheckIcon
-
+	
 func _process(_delta: float) -> void:
 	if (left_color_rect.visible == false
 		&& middle_color_rect.visible == false

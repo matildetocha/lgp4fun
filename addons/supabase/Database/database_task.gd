@@ -2,6 +2,8 @@
 extends BaseTask
 class_name DatabaseTask
 
+var console = JavaScriptBridge.get_interface("console")
+
 func match_code(code : int) -> int:
 	match code:
 		SupabaseQuery.REQUESTS.SELECT: return HTTPClient.METHOD_GET

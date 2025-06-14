@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://cia67dcgygwvf"]
 
-[ext_resource type="VideoStream" path="res://assets/dictionary/temas/videos/mãe.ogv" id="1_1rsax"]
+[ext_resource type="VideoStream" uid="uid://cc7wnqv4kcd1f" path="res://assets/dictionary/temas/videos/mãe.ogv" id="1_1rsax"]
 [ext_resource type="Texture2D" uid="uid://b86k5gkiciyio" path="res://ui/box.png" id="1_ksri6"]
-[ext_resource type="VideoStream" path="res://assets/dictionary/temas/videos/avô.ogv" id="2_85prb"]
+[ext_resource type="VideoStream" uid="uid://brwb0yhgn6p6q" path="res://assets/dictionary/temas/videos/avô.ogv" id="2_85prb"]
 [ext_resource type="FontFile" uid="uid://ctjfejh0k1qua" path="res://ui/fonts/Primeiro_Ciclo.ttf" id="2_sr01s"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ffogv"]

@@ -4,6 +4,8 @@ signal goto_main
 
 @export var level_1: PackedScene
 @export var level_2: PackedScene
+@export var level_3: PackedScene
+
 var current_level: Node
 
 var game_over_scene: PackedScene = preload("res://scenes/game/levels/game_over.tscn")
@@ -27,6 +29,10 @@ func _on_level_2_button_pressed() -> void:
 	current_level.connect("level2_over", goto_game_over)
 	current_level.connect("show_level_stats", level_stats)
 
+func _on_level_3_button_pressed() -> void:
+	current_level = level_3.instantiate()
+	$Levels.add_child(current_level)
+	
 func goto_levels() -> void:
 	GameManager.reset()
 	current_level.queue_free()

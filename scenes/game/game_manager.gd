@@ -15,6 +15,7 @@ var health = MAX_HEALTH
 var level1_letter: String
 var level2_theme: String
 var level2_stats = []
+var level3_stats = []
 
 var console = JavaScriptBridge.get_interface("console")
 
@@ -28,6 +29,12 @@ func get_level1_letter() -> String:
 func set_level1_letter(letter: String) -> void:
 	level1_letter = letter
 
+func set_level2_stats(stats) -> void:
+	level2_stats = stats
+
+func set_level3_stats(learned, all) -> void:
+	level3_stats = [learned, all]
+	
 func get_big_points() -> int:
 	return big_points
 
@@ -59,9 +66,6 @@ func reduce_health() -> void:
 func add_health() -> void:
 	if (health + 1 <= MAX_HEALTH):
 		health += 1
-
-func set_level2_stats(stats) -> void:
-	level2_stats = stats
 	
 func reset() -> void:
 	big_points = 0
