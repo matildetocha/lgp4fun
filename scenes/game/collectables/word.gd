@@ -12,8 +12,8 @@ func _on_body_entered(body: Node2D) -> void:
 	if (body.name == "Player1" || body.name == "Player2"):
 		queue_free()
 		
-		if (level2_man.current_word):	
-			if (label.text == level2_man.current_word):
+		if (level2_man.get_current_word()):	
+			if (self.is_in_group("collectables")):
 				level2_man.vocab_assembly("word")
 				GameManager.add_big_point()
 				GameManager.add_health()

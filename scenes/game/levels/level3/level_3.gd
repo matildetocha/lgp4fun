@@ -142,9 +142,9 @@ func set_current_word() -> void:
 			if err == OK:
 				var texture = ImageTexture.create_from_image(img)
 				image.texture = texture
-			image.visible = true
-			middle_color_rect.visible = false
-		
+				image.visible = true
+				middle_color_rect.visible = false
+
 	video.stream = load(VIDEO_PATH + current_word["name"].to_lower() + ".ogv")
 	video.play()
 	left_color_rect.visible = false

@@ -1,11 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cubh05o5b3b5v"]
+[gd_scene load_steps=7 format=3 uid="uid://cubh05o5b3b5v"]
 
 [ext_resource type="FontFile" uid="uid://ctjfejh0k1qua" path="res://ui/fonts/Primeiro_Ciclo.ttf" id="1_1b4s7"]
 [ext_resource type="Script" path="res://scenes/ui/vocab_control.gd" id="1_3572h"]
 [ext_resource type="Texture2D" uid="uid://c15pr4bcr47fg" path="res://ui/puzzle_cont_left.png" id="1_agrur"]
-[ext_resource type="VideoStream" path="res://assets/dictionary/temas/videos/mãe.ogv" id="2_un8ko"]
 [ext_resource type="Texture2D" uid="uid://b2lef0a13s83k" path="res://ui/puzzle_cont_middle.png" id="3_jhtiu"]
-[ext_resource type="Texture2D" uid="uid://irr7fgywamjb" path="res://assets/dictionary/temas/images/mãe.png" id="4_rsfwd"]
 [ext_resource type="Texture2D" uid="uid://bmwt8m5np8k4g" path="res://ui/puzzle_cont_right.png" id="5_agoco"]
 [ext_resource type="Texture2D" uid="uid://dbrq75cioemp0" path="res://ui/check_square_color_checkmark.png" id="5_kcin5"]
 
@@ -32,13 +30,12 @@ offset_left = 5.0
 offset_top = 5.0
 offset_right = 416.0
 offset_bottom = 234.0
-stream = ExtResource("2_un8ko")
+volume_db = -80.0
 autoplay = true
 expand = true
 loop = true
 
 [node name="ColorRect" type="ColorRect" parent="HBoxContainer/Left"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -105,7 +102,6 @@ offset_right = 123.0
 offset_bottom = 113.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_rsfwd")
 expand_mode = 3
 stretch_mode = 5
 

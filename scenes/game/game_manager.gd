@@ -1,6 +1,8 @@
 extends Node2D
 
 signal game_over
+signal life_up
+signal lose_life
 
 # Collectables
 var big_points = 0
@@ -13,7 +15,6 @@ var health = MAX_HEALTH
 
 # Level vars
 var level1_letter: String
-var level2_theme: String
 var level2_stats = []
 var level3_stats = []
 
@@ -21,7 +22,7 @@ var console = JavaScriptBridge.get_interface("console")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:	
-	pass
+	reset()
 
 func get_level1_letter() -> String:
 	return level1_letter
@@ -29,8 +30,8 @@ func get_level1_letter() -> String:
 func set_level1_letter(letter: String) -> void:
 	level1_letter = letter
 
-func set_level2_stats(stats) -> void:
-	level2_stats = stats
+func set_level2_stats(learned, all) -> void:
+	level2_stats = [learned, all]
 
 func set_level3_stats(learned, all) -> void:
 	level3_stats = [learned, all]
@@ -59,6 +60,7 @@ func add_sign_point() -> void:
 func reduce_health() -> void:
 	if (health - 1 >= 0):
 		health -= 1
+		lose_life.emit()
 		
 	if (health == 0):
 		game_over.emit()
@@ -66,6 +68,7 @@ func reduce_health() -> void:
 func add_health() -> void:
 	if (health + 1 <= MAX_HEALTH):
 		health += 1
+		life_up.emit()
 	
 func reset() -> void:
 	big_points = 0

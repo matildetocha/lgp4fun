@@ -1,0 +1,179 @@
+[gd_scene load_steps=13 format=3 uid="uid://c1mhndwrvhcew"]
+
+[ext_resource type="Texture2D" uid="uid://drmbnru54qen3" path="res://assets/level_3_choice.svg" id="1_rar2i"]
+[ext_resource type="Script" path="res://scenes/game/levels/level2/level_2_choice.gd" id="1_tp1px"]
+[ext_resource type="PackedScene" uid="uid://bswryckxpikb8" path="res://scenes/game/levels/level2/level_2.tscn" id="2_7q8qn"]
+[ext_resource type="FontFile" uid="uid://ctjfejh0k1qua" path="res://ui/fonts/Primeiro_Ciclo.ttf" id="2_bu8i3"]
+[ext_resource type="PackedScene" uid="uid://dgll8mgfhcdj2" path="res://scenes/game/levels/level2/level2_stats.tscn" id="3_8plu7"]
+[ext_resource type="PackedScene" uid="uid://dnygqga8n0igx" path="res://scenes/game/levels/game_over.tscn" id="4_12ouu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ra0aj"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.627451, 0.858824, 0.266667, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxbn8"]
+bg_color = Color(0.741176, 0.8, 0.831373, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.627451, 0.858824, 0.266667, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mh0he"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.741176, 0.8, 0.831373, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_abt6p"]
+bg_color = Color(0.7, 0.7, 0.7, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.741176, 0.8, 0.831373, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i0c4v"]
+bg_color = Color(0.7, 0.7, 0.7, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.741176, 0.8, 0.831373, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0nx40"]
+bg_color = Color(0.7, 0.7, 0.7, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.741176, 0.8, 0.831373, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="Level2Choice" type="Node2D"]
+script = ExtResource("1_tp1px")
+level_2_scene = ExtResource("2_7q8qn")
+level_2_stats_scene = ExtResource("3_8plu7")
+game_over_scene = ExtResource("4_12ouu")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_rar2i")
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -306.0
+offset_top = 348.0
+offset_right = 306.0
+offset_bottom = 505.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_bu8i3")
+theme_override_font_sizes/font_size = 150
+text = "Temas"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -350.0
+offset_top = -537.0
+offset_right = 350.0
+offset_bottom = -137.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="VBoxContainer" parent="TextureRect/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 40
+
+[node name="Button1" type="Button" parent="TextureRect/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_bu8i3")
+theme_override_font_sizes/font_size = 75
+theme_override_styles/hover = SubResource("StyleBoxFlat_ra0aj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jxbn8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mh0he")
+text = "Casa e Divisões"
+
+[node name="Button2" type="Button" parent="TextureRect/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_bu8i3")
+theme_override_font_sizes/font_size = 75
+theme_override_styles/hover = SubResource("StyleBoxFlat_ra0aj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jxbn8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mh0he")
+text = "Objetos da Escola"
+
+[node name="Button3" type="Button" parent="TextureRect/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_bu8i3")
+theme_override_font_sizes/font_size = 75
+theme_override_styles/hover = SubResource("StyleBoxFlat_abt6p")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_i0c4v")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0nx40")
+text = "Cores"
+
+[node name="Button4" type="Button" parent="TextureRect/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_bu8i3")
+theme_override_font_sizes/font_size = 75
+theme_override_styles/hover = SubResource("StyleBoxFlat_abt6p")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_i0c4v")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0nx40")
+text = "Animais"
+
+[connection signal="pressed" from="TextureRect/ScrollContainer/HBoxContainer/Button1" to="." method="_on_button_1_pressed"]
+[connection signal="pressed" from="TextureRect/ScrollContainer/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]

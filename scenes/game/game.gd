@@ -25,36 +25,10 @@ func _on_level_1_button_pressed() -> void:
 func _on_level_2_button_pressed() -> void:
 	current_level = level_2.instantiate()
 	$Levels.add_child(current_level)
-	current_level.connect("go_back", goto_levels)
-	current_level.connect("level2_over", goto_game_over)
-	current_level.connect("show_level_stats", level_stats)
 
 func _on_level_3_button_pressed() -> void:
 	current_level = level_3.instantiate()
 	$Levels.add_child(current_level)
-	
-func goto_levels() -> void:
-	GameManager.reset()
-	current_level.queue_free()
-
-func goto_game_over() -> void:
-	await get_tree().create_timer(0.5).timeout
-	
-	current_level.queue_free()
-	game_over = game_over_scene.instantiate()
-	add_child(game_over)
-	
-	game_over.connect("end_game_over", goto_start)
-	
-func level_stats() -> void:
-	await get_tree().create_timer(0.5).timeout
-	
-	current_level.queue_free()
-	
-	level_2_stats = level_2_stats_scene.instantiate()
-	add_child(level_2_stats)
-	
-	level_2_stats.connect("end_stats", goto_start)
 	
 func goto_start() -> void:
 	GameManager.reset()

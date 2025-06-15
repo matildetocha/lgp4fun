@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://d22hhejb8be7k"]
+[gd_scene load_steps=7 format=3 uid="uid://d22hhejb8be7k"]
 
 [ext_resource type="Script" path="res://scenes/game/collectables/video.gd" id="1_hgcbl"]
-[ext_resource type="VideoStream" path="res://assets/dictionary/temas/videos/mãe.ogv" id="2_be3se"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qej3v"]
 bg_color = Color(0.92, 0.92, 0.92, 1)
@@ -92,7 +91,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-stream = ExtResource("2_be3se")
+volume_db = -80.0
 expand = true
 loop = true
 

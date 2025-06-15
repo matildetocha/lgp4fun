@@ -1,19 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://dgll8mgfhcdj2"]
+[gd_scene load_steps=9 format=3 uid="uid://dgll8mgfhcdj2"]
 
 [ext_resource type="Script" path="res://scenes/game/levels/level2/level2_stats.gd" id="1_dd166"]
 [ext_resource type="Texture2D" uid="uid://c7rdrbcu7k860" path="res://assets/level_stats.svg" id="2_skj67"]
-[ext_resource type="Texture2D" uid="uid://irr7fgywamjb" path="res://assets/dictionary/temas/images/mãe.png" id="3_5c7vj"]
 [ext_resource type="FontFile" uid="uid://ctjfejh0k1qua" path="res://ui/fonts/Primeiro_Ciclo.ttf" id="3_7ta6m"]
-[ext_resource type="Texture2D" uid="uid://cg1kdmitaxtoc" path="res://assets/dictionary/temas/images/pai.png" id="5_fb3pl"]
 [ext_resource type="Texture2D" uid="uid://bf7rlms3i6pdp" path="res://ui/arrow_decorative_w_small.png" id="6_c6pi4"]
-[ext_resource type="Texture2D" uid="uid://cyq2ydhsqak1e" path="res://assets/dictionary/temas/images/avô.png" id="6_w1187"]
-[ext_resource type="Texture2D" uid="uid://cs152x7xowati" path="res://assets/dictionary/temas/images/avó.png" id="7_8ovyw"]
+[ext_resource type="Script" path="res://addons/awaitable_http_request/awaitable_http_request.gd" id="9_3kqwx"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x7fhk"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_juu8v"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sakxg"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hshll"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u4cqv"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3bght"]
 
 [node name="LevelStats" type="Node2D"]
 script = ExtResource("1_dd166")
@@ -30,14 +27,41 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -177.0
-offset_top = 45.0
-offset_right = 220.0
-offset_bottom = 411.0
+offset_left = -293.0
+offset_top = 28.0
+offset_right = 326.0
+offset_bottom = 428.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 alignment = 1
+
+[node name="VocabContainer" type="HBoxContainer" parent="TextureRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 150
+
+[node name="Image" type="TextureRect" parent="TextureRect/VBoxContainer/VocabContainer"]
+visible = false
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 0
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Word" type="Label" parent="TextureRect/VBoxContainer/VocabContainer"]
+visible = false
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_7ta6m")
+theme_override_font_sizes/font_size = 80
+text = "mãe"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VocabContainer2" type="HBoxContainer" parent="TextureRect/VBoxContainer"]
 layout_mode = 2
@@ -45,14 +69,15 @@ size_flags_vertical = 3
 theme_override_constants/separation = 150
 
 [node name="Image" type="TextureRect" parent="TextureRect/VBoxContainer/VocabContainer2"]
+visible = false
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("5_fb3pl")
 expand_mode = 2
 stretch_mode = 5
 
 [node name="Word" type="Label" parent="TextureRect/VBoxContainer/VocabContainer2"]
+visible = false
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 0
@@ -72,13 +97,14 @@ size_flags_vertical = 3
 theme_override_constants/separation = 150
 
 [node name="Image" type="TextureRect" parent="TextureRect/VBoxContainer/VocabContainer3"]
+visible = false
 texture_filter = 1
 layout_mode = 2
-texture = ExtResource("6_w1187")
 expand_mode = 2
 stretch_mode = 5
 
 [node name="Word" type="Label" parent="TextureRect/VBoxContainer/VocabContainer3"]
+visible = false
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 0
@@ -98,13 +124,14 @@ size_flags_vertical = 3
 theme_override_constants/separation = 150
 
 [node name="Image" type="TextureRect" parent="TextureRect/VBoxContainer/VocabContainer4"]
+visible = false
 texture_filter = 1
 layout_mode = 2
-texture = ExtResource("7_8ovyw")
 expand_mode = 2
 stretch_mode = 5
 
 [node name="Word" type="Label" parent="TextureRect/VBoxContainer/VocabContainer4"]
+visible = false
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 0
@@ -117,32 +144,6 @@ text = "avó"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VocabContainer" type="HBoxContainer" parent="TextureRect/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 150
-
-[node name="Image" type="TextureRect" parent="TextureRect/VBoxContainer/VocabContainer"]
-texture_filter = 1
-layout_mode = 2
-size_flags_horizontal = 0
-texture = ExtResource("3_5c7vj")
-expand_mode = 2
-stretch_mode = 5
-
-[node name="Word" type="Label" parent="TextureRect/VBoxContainer/VocabContainer"]
-texture_filter = 1
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_7ta6m")
-theme_override_font_sizes/font_size = 80
-text = "mãe"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="ColorRects" type="Control" parent="TextureRect"]
 anchors_preset = 0
 offset_right = 40.0
@@ -150,33 +151,33 @@ offset_bottom = 40.0
 
 [node name="ColorRect" type="ColorRect" parent="TextureRect/ColorRects"]
 layout_mode = 2
-offset_left = 782.0
+offset_left = 665.0
 offset_top = 567.0
-offset_right = 1172.0
+offset_right = 1288.0
 offset_bottom = 656.0
 color = Color(0.65, 0.65, 0.65, 0.447059)
 
 [node name="ColorRect2" type="ColorRect" parent="TextureRect/ColorRects"]
 layout_mode = 2
-offset_left = 782.0
+offset_left = 667.0
 offset_top = 671.0
-offset_right = 1172.0
+offset_right = 1288.0
 offset_bottom = 760.0
 color = Color(0.65, 0.65, 0.65, 0.447059)
 
 [node name="ColorRect3" type="ColorRect" parent="TextureRect/ColorRects"]
 layout_mode = 2
-offset_left = 783.0
+offset_left = 667.0
 offset_top = 776.0
-offset_right = 1173.0
+offset_right = 1286.0
 offset_bottom = 865.0
 color = Color(0.65, 0.65, 0.65, 0.447059)
 
 [node name="ColorRect4" type="ColorRect" parent="TextureRect/ColorRects"]
 layout_mode = 2
-offset_left = 784.0
+offset_left = 667.0
 offset_top = 881.0
-offset_right = 1174.0
+offset_right = 1286.0
 offset_bottom = 970.0
 color = Color(0.65, 0.65, 0.65, 0.447059)
 
@@ -188,9 +189,13 @@ offset_bottom = 1031.0
 rotation = 3.14159
 theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
 theme_override_icons/icon = ExtResource("6_c6pi4")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_x7fhk")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_sakxg")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_u4cqv")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_juu8v")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hshll")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3bght")
 icon_alignment = 1
+
+[node name="AwaitableHTTPRequest" type="HTTPRequest" parent="."]
+script = ExtResource("9_3kqwx")
+metadata/_custom_type_script = "uid://dupnp2fk1y018"
 
 [connection signal="pressed" from="EndButton" to="." method="_on_end_button_pressed"]

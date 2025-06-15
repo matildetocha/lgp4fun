@@ -1,12 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://lhssok78xshw"]
+[gd_scene load_steps=9 format=3 uid="uid://lhssok78xshw"]
 
 [ext_resource type="Script" path="res://scenes/game/levels/level3/level3_stats.gd" id="1_vole2"]
 [ext_resource type="Texture2D" uid="uid://c7rdrbcu7k860" path="res://assets/level_stats.svg" id="2_w441n"]
-[ext_resource type="Texture2D" uid="uid://cg1kdmitaxtoc" path="res://assets/dictionary/temas/images/pai.png" id="3_hveoe"]
 [ext_resource type="FontFile" uid="uid://ctjfejh0k1qua" path="res://ui/fonts/Primeiro_Ciclo.ttf" id="4_gpeqn"]
-[ext_resource type="Texture2D" uid="uid://cyq2ydhsqak1e" path="res://assets/dictionary/temas/images/avô.png" id="5_83cwb"]
-[ext_resource type="Texture2D" uid="uid://cs152x7xowati" path="res://assets/dictionary/temas/images/avó.png" id="6_o4w5b"]
-[ext_resource type="Texture2D" uid="uid://irr7fgywamjb" path="res://assets/dictionary/temas/images/mãe.png" id="7_242iy"]
 [ext_resource type="Texture2D" uid="uid://bf7rlms3i6pdp" path="res://ui/arrow_decorative_w_small.png" id="8_ef0x8"]
 [ext_resource type="Script" path="res://addons/awaitable_http_request/awaitable_http_request.gd" id="9_kvtx8"]
 
@@ -50,7 +46,6 @@ visible = false
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("7_242iy")
 expand_mode = 2
 stretch_mode = 5
 
@@ -78,7 +73,6 @@ visible = false
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("3_hveoe")
 expand_mode = 2
 stretch_mode = 5
 
@@ -106,7 +100,6 @@ theme_override_constants/separation = 150
 visible = false
 texture_filter = 1
 layout_mode = 2
-texture = ExtResource("5_83cwb")
 expand_mode = 2
 stretch_mode = 5
 
@@ -134,7 +127,6 @@ theme_override_constants/separation = 150
 visible = false
 texture_filter = 1
 layout_mode = 2
-texture = ExtResource("6_o4w5b")
 expand_mode = 2
 stretch_mode = 5
 

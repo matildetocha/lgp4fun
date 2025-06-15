@@ -1,6 +1,8 @@
 extends Node2D
 
 signal next_vocab_level
+signal play_video
+
 # Players
 @onready var player_1: CharacterBody2D = $"../Player1"
 @onready var player_2: CharacterBody2D = $"../Player2"
@@ -19,3 +21,4 @@ func _ready() -> void:
 	
 func next_vocab() -> void:
 	next_vocab_level.emit()
+	play_video.emit(current_vocab_level)

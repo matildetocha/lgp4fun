@@ -9,7 +9,7 @@ var level_3_stats: Node2D
 var game_over: Node2D
 
 @export var theme = "(1ºCEB)"
-@export 	var valid_themes = [
+@export var valid_themes = [
 		"(1ºCEB) CASA E DIVISÕES"]
 		
 var themes_fetched = []
@@ -31,7 +31,7 @@ func _ready() -> void:
 	level_3.connect("go_back", go_back)
 	level_3.connect("show_level_stats", level_stats)
 	
-	GameManager.connect("game_over", game_over_level1)
+	GameManager.connect("game_over", game_over_level3)
 
 func get_theme() -> String:
 	return selected_theme
@@ -65,7 +65,7 @@ func level_stats() -> void:
 	
 	level_3_stats.connect("end_stats", end_level)
 
-func game_over_level1() -> void:
+func game_over_level3() -> void:
 	await get_tree().create_timer(0.5).timeout
 	
 	level_3.queue_free()

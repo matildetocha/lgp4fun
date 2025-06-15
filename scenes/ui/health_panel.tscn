@@ -1,11 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dl3cww3bwd5c3"]
+[gd_scene load_steps=11 format=3 uid="uid://dl3cww3bwd5c3"]
 
 [ext_resource type="Texture2D" uid="uid://ctex2y5r8y73m" path="res://ui/button_round_line.png" id="1_ciyrv"]
 [ext_resource type="Texture2D" uid="uid://bvyetou50p1cj" path="res://assets/HUD/hud_heartFull.png" id="2_tmxkq"]
 [ext_resource type="FontFile" uid="uid://cfvn1vpqdthnr" path="res://ui/fonts/Kenney Future Narrow.ttf" id="3_5dthh"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cxnnl"]
-bg_color = Color(0, 0, 0, 0.392157)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qs064"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j3rwk"]
+bg_color = Color(0, 0, 0, 0.627451)
 corner_radius_top_left = 60
 corner_radius_top_right = 60
 corner_radius_bottom_right = 60
@@ -14,10 +16,81 @@ corner_radius_bottom_left = 60
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_usefy"]
 texture = ExtResource("1_ciyrv")
 
+[sub_resource type="Animation" id="Animation_12k5g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.85098, 0.113725, 0.117647, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pdkac"]
+resource_name = "life_up"
+length = 0.4
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 0, 1), Color(1, 1, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7l63v"]
+resource_name = "lose_life"
+length = 0.4
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.85098, 0.113725, 0.117647, 1), Color(0.85098, 0.113725, 0.117647, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_364ti"]
+_data = {
+"RESET": SubResource("Animation_12k5g"),
+"life_up": SubResource("Animation_pdkac"),
+"lose_life": SubResource("Animation_7l63v")
+}
+
 [node name="HealthPanel" type="Panel"]
 offset_right = 170.0
 offset_bottom = 60.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_cxnnl")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_qs064")
+
+[node name="Panel" type="Panel" parent="."]
+clip_children = 2
+layout_mode = 0
+offset_right = 170.0
+offset_bottom = 60.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_j3rwk")
+
+[node name="ColorRect" type="ColorRect" parent="Panel"]
+layout_mode = 0
+offset_right = 170.0
+offset_bottom = 60.0
+color = Color(0.85098, 0.113725, 0.117647, 0)
 
 [node name="HeartPanel" type="Panel" parent="."]
 layout_mode = 1
@@ -65,3 +138,11 @@ theme_override_font_sizes/font_size = 60
 text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Effects" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_364ti")
+}
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
