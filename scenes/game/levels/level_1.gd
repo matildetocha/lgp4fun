@@ -2,6 +2,7 @@ extends Node
 
 signal show_level_stats
 signal go_back
+signal timeout
 
 @onready var scene_transition: AnimationPlayer = $SceneTransition/AnimationPlayer
 @onready var end: Node2D = $Collectables/End
@@ -17,3 +18,6 @@ func end_level_1() -> void:
 
 func _on_back_button_pressed() -> void:
 	go_back.emit()
+
+func _on_timer_timeout() -> void:
+	timeout.emit()

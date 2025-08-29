@@ -2,6 +2,7 @@ extends Node2D
 
 signal goto_main
 
+@export var level_0: PackedScene
 @export var level_1: PackedScene
 @export var level_2: PackedScene
 @export var level_3: PackedScene
@@ -18,6 +19,10 @@ var level_2_stats
 func _ready() -> void:
 	pass
 
+func _on_level_0_button_pressed() -> void:
+	current_level = level_0.instantiate()
+	$Levels.add_child(current_level)
+	
 func _on_level_1_button_pressed() -> void:
 	current_level = level_1.instantiate()
 	$Levels.add_child(current_level)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dw108it2mkskx"]
 
-[ext_resource type="Texture2D" uid="uid://c73i6dcswo2qs" path="res://assets/lgp4fun levels.svg" id="1_jgy0k"]
+[ext_resource type="Texture2D" uid="uid://c2u0qylw6h537" path="res://assets/levels_screen.svg" id="1_v1t1c"]
 
 [node name="LevelsMenu" type="Control"]
 layout_mode = 3
@@ -10,4 +10,4 @@ anchors_preset = 0
 layout_mode = 1
 offset_right = 1920.0
 offset_bottom = 1080.0
-texture = ExtResource("1_jgy0k")
+texture = ExtResource("1_v1t1c")

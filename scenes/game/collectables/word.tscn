@@ -5,7 +5,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i4ojd"]
 radius = 20.0
-height = 90.0
+height = 138.0
 
 [sub_resource type="Animation" id="Animation_7rchn"]
 resource_name = "blink"
@@ -56,10 +56,18 @@ theme_override_font_sizes/font_size = 80
 text = "mãe"
 
 [node name="ColorRect" type="ColorRect" parent="Label"]
-layout_mode = 0
-offset_left = -27.0
-offset_right = 103.0
-offset_bottom = 97.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -279.5
+offset_top = -115.0
+offset_right = 279.5
+offset_bottom = 115.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(1, 1, 0, 0.509804)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -11,7 +11,8 @@ var game_over: Node2D
 @export var theme = "(1ºCEB)"
 @export var valid_themes = [
 		"(1ºCEB) CASA E DIVISÕES",
-		"(1ºCEB) OBJETOS DA ESCOLA"]
+		"(1ºCEB) OBJETOS DA ESCOLA",
+		"(1ºCEB) CORES/ PORTUGUÊS"]
 		
 var themes_fetched = []
 var selected_theme = ""
@@ -53,6 +54,10 @@ func _on_button_2_pressed() -> void:
 	selected_theme = "(1ºCEB) OBJETOS DA ESCOLA"
 	add_child(level_2)
 
+func _on_button_3_pressed() -> void:
+	selected_theme = "(1ºCEB) CORES/ PORTUGUÊS"
+	add_child(level_2)
+	
 func level_stats() -> void:
 	await get_tree().create_timer(0.5).timeout
 	
@@ -82,6 +87,9 @@ func end_game_over() -> void:
 	end_level()
 	
 func go_back() -> void:
+	end_level()
+
+func _on_back_button_pressed() -> void:
 	end_level()
 	
 func end_level() -> void:

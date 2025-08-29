@@ -1,9 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://cudt7up4clrk6"]
+[gd_scene load_steps=8 format=3 uid="uid://cudt7up4clrk6"]
 
 [ext_resource type="Script" path="res://scenes/game/collectables/image.gd" id="1_1yi1x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ncee1"]
 bg_color = Color(0.92, 0.92, 0.92, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wa7x2"]
+bg_color = Color(1, 1, 1, 0)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
@@ -76,7 +88,6 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ncee1")
 
 [node name="ColorRect" type="ColorRect" parent="Panel"]
-layout_mode = 0
 offset_left = -6.0
 offset_top = -6.0
 offset_right = 156.0
@@ -98,6 +109,21 @@ grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
 stretch_mode = 4
+
+[node name="PanelInt" type="Panel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -75.0
+offset_right = 75.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wa7x2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_nn567")

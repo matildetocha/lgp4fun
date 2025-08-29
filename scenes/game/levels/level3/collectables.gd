@@ -11,9 +11,9 @@ func populate_collectables() -> void:
 	var words = words_node.get_children()
 	randomize()
 	
-	if (level3.vocab_challenge.size() > 0):
+	if (level3.vocab_words.size() > 0):
 		for i in range(5):
-			var correct_syllable = level3.vocab_challenge[i][1]
+			var correct_syllable = level3.vocab_words[i][1][1]
 			var pair_index = i * 2
 
 			if i == 0:

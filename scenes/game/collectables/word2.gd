@@ -14,7 +14,7 @@ func _on_body_entered(body: Node2D) -> void:
 		
 		if (level3_man.current_word):	
 			if (self.is_in_group("collectables")):
-				level3_man.add_vocab(level3_man.current_word["name"].to_lower())
+				level3_man.add_vocab(level3_man.current_word[0].to_lower())
 				level3_man.vocab_assembly()
 				GameManager.add_big_point()
 				GameManager.add_health()

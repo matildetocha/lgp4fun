@@ -1,9 +1,11 @@
-[gd_scene load_steps=57 format=4 uid="uid://dw12ogm5mskgy"]
+[gd_scene load_steps=59 format=4 uid="uid://dw12ogm5mskgy"]
 
 [ext_resource type="Script" path="res://scenes/game/levels/level3/level_3.gd" id="1_n0kin"]
 [ext_resource type="Script" path="res://scenes/ui/ui.gd" id="1_wl5jx"]
+[ext_resource type="PackedScene" uid="uid://cbrmb6vj2d1qv" path="res://scenes/ui/loading_screen.tscn" id="2_5uyik"]
 [ext_resource type="PackedScene" uid="uid://dl3cww3bwd5c3" path="res://scenes/ui/health_panel.tscn" id="2_aw7k7"]
 [ext_resource type="Texture2D" uid="uid://bf7rlms3i6pdp" path="res://ui/arrow_decorative_w_small.png" id="3_1enq6"]
+[ext_resource type="PackedScene" uid="uid://b8ienjmbpaxa8" path="res://scenes/ui/timer.tscn" id="4_7vq50"]
 [ext_resource type="PackedScene" uid="uid://cubh05o5b3b5v" path="res://scenes/ui/vocab_control.tscn" id="4_ocsuy"]
 [ext_resource type="Texture2D" uid="uid://cyn47ub1ojljs" path="res://ui/backgroundEmpty.png" id="5_c0dq8"]
 [ext_resource type="Texture2D" uid="uid://bgo7hp7h5uche" path="res://assets/sprites/liquids/liquids_all.png" id="6_nxd1n"]
@@ -960,6 +962,7 @@ pattern_0 = SubResource("TileMapPattern_xxv4r")
 
 [node name="Level3" type="Node2D"]
 script = ExtResource("1_n0kin")
+loading_scene = ExtResource("2_5uyik")
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("1_wl5jx")
@@ -972,6 +975,16 @@ offset_left = -220.0
 offset_top = 50.0
 offset_right = -50.0
 offset_bottom = 110.0
+grow_horizontal = 0
+
+[node name="Timer" parent="UI" instance=ExtResource("4_7vq50")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -220.0
+offset_top = 150.0
+offset_right = -50.0
+offset_bottom = 210.0
 grow_horizontal = 0
 
 [node name="BackButton" type="Button" parent="UI"]
@@ -1073,16 +1086,16 @@ shape = SubResource("WorldBoundaryShape2D_pt4no")
 [node name="VocabLevelChecks" type="Node2D" parent="TerrainAreas"]
 
 [node name="VocabLevelCheck" parent="TerrainAreas/VocabLevelChecks" instance=ExtResource("21_yc52g")]
-position = Vector2(4851, 649)
+position = Vector2(4851, 1052)
 
 [node name="VocabLevelCheck2" parent="TerrainAreas/VocabLevelChecks" instance=ExtResource("21_yc52g")]
-position = Vector2(8454, 1067)
+position = Vector2(8454, 1049)
 
 [node name="VocabLevelCheck3" parent="TerrainAreas/VocabLevelChecks" instance=ExtResource("21_yc52g")]
-position = Vector2(13231, 668)
+position = Vector2(13231, 1051)
 
 [node name="VocabLevelCheck4" parent="TerrainAreas/VocabLevelChecks" instance=ExtResource("21_yc52g")]
-position = Vector2(17355, 1067)
+position = Vector2(17355, 1049)
 
 [node name="VocabLevelCheck5" parent="TerrainAreas/VocabLevelChecks" instance=ExtResource("21_yc52g")]
 position = Vector2(1989, 1064)
@@ -1204,12 +1217,20 @@ script = ExtResource("24_psmso")
 
 [node name="SceneTransition" parent="." instance=ExtResource("32_503lk")]
 
-[node name="AwaitableHTTPRequest" type="HTTPRequest" parent="."]
+[node name="ImageHTTPRequest" type="HTTPRequest" parent="."]
 script = ExtResource("32_2g3dq")
 metadata/_custom_type_script = "uid://dupnp2fk1y018"
+
+[node name="VideoHTTPRequest" type="HTTPRequest" parent="."]
+script = ExtResource("32_2g3dq")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 300.0
+one_shot = true
 
 [connection signal="pressed" from="UI/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="body_entered" from="TerrainAreas/Player2FallArea" to="TerrainAreas/Player2FallArea" method="_on_body_entered"]
 [connection signal="body_entered" from="TerrainAreas/Player1FallArea" to="TerrainAreas/Player1FallArea" method="_on_body_entered"]
 [connection signal="body_entered" from="Collectables/End/EndPlayer1" to="Collectables/End" method="_on_end_player_1_body_entered"]
 [connection signal="body_entered" from="Collectables/End/EndPlayer2" to="Collectables/End" method="_on_end_player_2_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

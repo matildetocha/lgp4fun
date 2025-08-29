@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c1mhndwrvhcew"]
+[gd_scene load_steps=17 format=3 uid="uid://c1mhndwrvhcew"]
 
 [ext_resource type="Texture2D" uid="uid://drmbnru54qen3" path="res://assets/level_3_choice.svg" id="1_rar2i"]
 [ext_resource type="Script" path="res://scenes/game/levels/level2/level_2_choice.gd" id="1_tp1px"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://ctjfejh0k1qua" path="res://ui/fonts/Primeiro_Ciclo.ttf" id="2_bu8i3"]
 [ext_resource type="PackedScene" uid="uid://dgll8mgfhcdj2" path="res://scenes/game/levels/level2/level2_stats.tscn" id="3_8plu7"]
 [ext_resource type="PackedScene" uid="uid://dnygqga8n0igx" path="res://scenes/game/levels/game_over.tscn" id="4_12ouu"]
+[ext_resource type="Texture2D" uid="uid://bf7rlms3i6pdp" path="res://ui/arrow_decorative_w_small.png" id="7_w0lra"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ra0aj"]
 bg_color = Color(1, 1, 1, 1)
@@ -78,6 +79,12 @@ corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m8ry3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tp3ca"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5lgib"]
 
 [node name="Level2Choice" type="Node2D"]
 script = ExtResource("1_tp1px")
@@ -158,9 +165,9 @@ theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_bu8i3")
 theme_override_font_sizes/font_size = 75
-theme_override_styles/hover = SubResource("StyleBoxFlat_abt6p")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_i0c4v")
-theme_override_styles/normal = SubResource("StyleBoxFlat_0nx40")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ra0aj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jxbn8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mh0he")
 text = "Cores"
 
 [node name="Button4" type="Button" parent="TextureRect/ScrollContainer/HBoxContainer"]
@@ -175,5 +182,18 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_i0c4v")
 theme_override_styles/normal = SubResource("StyleBoxFlat_0nx40")
 text = "Animais"
 
+[node name="BackButton" type="Button" parent="."]
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 98.0
+offset_bottom = 98.0
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_icons/icon = ExtResource("7_w0lra")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_m8ry3")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_tp3ca")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5lgib")
+
 [connection signal="pressed" from="TextureRect/ScrollContainer/HBoxContainer/Button1" to="." method="_on_button_1_pressed"]
 [connection signal="pressed" from="TextureRect/ScrollContainer/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="TextureRect/ScrollContainer/HBoxContainer/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

@@ -1,7 +1,5 @@
 extends Node2D
 
-@onready var scene_transition: AnimationPlayer = $SceneTransition/AnimationPlayer
-
 var level_1_scene: PackedScene = preload("res://scenes/game/levels/level_1.tscn")
 var level_1_stats_scene: PackedScene = preload("res://scenes/game/levels/level_stats.tscn")
 var game_over_scene: PackedScene = preload("res://scenes/game/levels/game_over.tscn")
@@ -12,12 +10,10 @@ var game_over: Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	scene_transition.get_parent().get_node("ColorRect").color.a = 255
-	scene_transition.play("fade_out")
-	
 	level_1 = level_1_scene.instantiate()
 	level_1.connect("show_level_stats", level_stats)
 	level_1.connect("go_back", go_back)
+	level_1.connect("timeout", game_over_level1)
 	
 	GameManager.connect("game_over", game_over_level1)
 
@@ -175,6 +171,9 @@ func end_game_over() -> void:
 	end_level()
 	
 func go_back() -> void:
+	end_level()
+
+func _on_back_button_pressed() -> void:
 	end_level()
 	
 func end_level() -> void:

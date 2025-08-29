@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://lhssok78xshw"]
+[gd_scene load_steps=8 format=3 uid="uid://lhssok78xshw"]
 
 [ext_resource type="Script" path="res://scenes/game/levels/level3/level3_stats.gd" id="1_vole2"]
 [ext_resource type="Texture2D" uid="uid://c7rdrbcu7k860" path="res://assets/level_stats.svg" id="2_w441n"]
 [ext_resource type="FontFile" uid="uid://ctjfejh0k1qua" path="res://ui/fonts/Primeiro_Ciclo.ttf" id="4_gpeqn"]
 [ext_resource type="Texture2D" uid="uid://bf7rlms3i6pdp" path="res://ui/arrow_decorative_w_small.png" id="8_ef0x8"]
-[ext_resource type="Script" path="res://addons/awaitable_http_request/awaitable_http_request.gd" id="9_kvtx8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x7fhk"]
 
@@ -193,9 +192,5 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_x7fhk")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_sakxg")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_u4cqv")
 icon_alignment = 1
-
-[node name="AwaitableHTTPRequest" type="HTTPRequest" parent="."]
-script = ExtResource("9_kvtx8")
-metadata/_custom_type_script = "uid://dupnp2fk1y018"
 
 [connection signal="pressed" from="EndButton" to="." method="_on_end_button_pressed"]

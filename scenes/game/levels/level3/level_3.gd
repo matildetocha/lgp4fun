@@ -4,6 +4,7 @@ signal populate
 signal assemble
 signal go_back
 signal show_level_stats
+signal timeout
 
 const SILABAS_COMUNS = [
 		"a", "e", "i", "o", "u",
@@ -31,7 +32,10 @@ const SILABAS_COMUNS = [
 		"cha", "che", "chi", "cho", "chu",
 		"nha", "nhe", "nhi", "nho", "nhu"
 	]
-	
+
+@export var loading_scene: PackedScene
+var loading_screen: CanvasLayer
+
 # Left Puzzle
 @onready var video: VideoStreamPlayer = $UI/VocabControl/HBoxContainer/Left/VideoStreamPlayer
 @onready var left_color_rect: ColorRect = $UI/VocabControl/HBoxContainer/Left/ColorRect
@@ -50,9 +54,11 @@ const SILABAS_COMUNS = [
 @onready var terrain_areas: Node2D = $TerrainAreas
 
 @onready var scene_transition: AnimationPlayer = $SceneTransition/AnimationPlayer
-@onready var http_request: AwaitableHTTPRequest = $AwaitableHTTPRequest
+@onready var image_http_request: AwaitableHTTPRequest = $ImageHTTPRequest
+@onready var video_http_request: AwaitableHTTPRequest = $VideoHTTPRequest
 
 const MAX_VOCAB = 5
+const VIDEO_CACHE_PATH = "user://cache/"
 const VIDEO_PATH = "res://assets/dictionary/temas/videos/"
 
 var current_word = ""
@@ -65,6 +71,9 @@ var vocab_learned = []
 func _ready() -> void:
 	scene_transition.get_parent().get_node("ColorRect").color.a = 255
 	scene_transition.play("fade_out")
+	
+	loading_screen = loading_scene.instantiate()
+	add_child(loading_screen)
 	
 	Supabase.database.connect("selected", _on_signs_fetched)
 	Supabase.database.connect("error", _on_supabase_error)
@@ -82,14 +91,41 @@ func _on_signs_fetched(signs: Array) -> void:
 
 	randomize()
 	signs.shuffle()  # Shuffle the array to randomize order
-
+	
+	var level_signs = []
 	for i in range(amount_to_pick):
-		vocab_words.append(signs[i])
+		level_signs.append(signs[i])
 	
-	for v in vocab_words:
-		var temp = remove_random_syllable(v["name"])
-		vocab_challenge.append(temp)
+	for s in level_signs:
+		var vocab = []
+		vocab.append(s["name"].to_lower())
+		
+		var challenge = remove_random_syllable(s["name"])
+		vocab.append(challenge)
+		
+		if (s["image"]):
+			var resp = await image_http_request.async_request(s["image"])
+			var img = Image.new()
+			var err = img.load_png_from_buffer(resp.bytes)
+			if resp.success():
+				if err == OK:
+					var texture = ImageTexture.create_from_image(img)
+					vocab.append(texture)
+		
+		if (s["game_video"]):
+			var file = s["name"].to_lower() + ".ogv"
+			var dir = DirAccess.open(VIDEO_CACHE_PATH)
+			
+			if file not in dir.get_files():
+				video_http_request.download_file = VIDEO_CACHE_PATH + file
+				await video_http_request.async_request(s["game_video"])
+				
+			vocab.append(VIDEO_CACHE_PATH + file)
+			
+		vocab_words.append(vocab)
 	
+	loading_screen.queue_free()
+	$Timer.start()
 	populate.emit()
 	set_current_word()
 
@@ -133,35 +169,26 @@ func remove_random_syllable(text: String) -> Array:
 
 func set_current_word() -> void:
 	current_word = vocab_words[terrain_areas.current_vocab_level]
-		
-	if (current_word["image"]):
-		var resp = await http_request.async_request(current_word["image"])
-		var img = Image.new()
-		var err = img.load_png_from_buffer(resp.bytes)
-		if resp.success():
-			if err == OK:
-				var texture = ImageTexture.create_from_image(img)
-				image.texture = texture
-				image.visible = true
-				middle_color_rect.visible = false
-
-	video.stream = load(VIDEO_PATH + current_word["name"].to_lower() + ".ogv")
+	
+	image.texture = current_word[2]
+	image.visible = true
+	middle_color_rect.visible = false
+				
+	video.stream = load(current_word[3])
 	video.play()
 	left_color_rect.visible = false
 	
-	word.text = vocab_challenge[terrain_areas.current_vocab_level][0]
+	word.text = current_word[1][0]
 	right_color_rect.visible = false
 	
 func add_vocab(new_word: String) -> void:
 	vocab_learned.append(new_word)
 
 func vocab_assembly() -> void:
-	word.text = current_word["name"].to_lower()
+	word.text = current_word[0].to_lower()
 	assemble.emit(true)
 
-func reset_word() -> void:	
-	await get_tree().create_timer(1.5).timeout
-	
+func reset_word() -> void:		
 	video.stop()
 	left_color_rect.visible = true
 	
@@ -175,3 +202,6 @@ func reset_word() -> void:
 	
 	if (terrain_areas.current_vocab_level < MAX_VOCAB):
 		set_current_word()
+
+func _on_timer_timeout() -> void:
+	timeout.emit()

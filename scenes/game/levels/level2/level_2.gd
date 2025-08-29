@@ -34,16 +34,17 @@ var vocab_learned = []
 @onready var end: Node2D = $Collectables/End
 @onready var terrain_areas: Node2D = $TerrainAreas
 
+@onready var scene_transition: AnimationPlayer = $SceneTransition/AnimationPlayer
 @onready var image_http_request: AwaitableHTTPRequest = $ImageHTTPRequest
 @onready var video_http_request: AwaitableHTTPRequest = $VideoHTTPRequest
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	scene_transition.get_parent().get_node("ColorRect").color.a = 255
+	scene_transition.play("fade_out")
+	
 	loading_screen = loading_scene.instantiate()
 	add_child(loading_screen)
-	
-	#scene_transition.get_parent().get_node("ColorRect").color.a = 255
-	#scene_transition.play("fade_out")
 	
 	Supabase.database.connect("selected", _on_signs_fetched)
 	Supabase.database.connect("error", _on_supabase_error)
@@ -170,7 +171,6 @@ func reset_word() -> void:
 		add_vocab(current_word[0])
 	else:
 		add_vocab("")
-	await get_tree().create_timer(1.5).timeout
 	
 	video.stop()
 	left_color_rect.visible = true

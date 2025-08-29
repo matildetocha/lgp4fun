@@ -1,14 +1,20 @@
-[gd_scene load_steps=17 format=3 uid="uid://b6otflnml2l6j"]
+[gd_scene load_steps=24 format=3 uid="uid://b6otflnml2l6j"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_xwhwq"]
 [ext_resource type="PackedScene" uid="uid://fpl577nksydh" path="res://scenes/game/levels/level_1_man.tscn" id="2_is6fr"]
+[ext_resource type="PackedScene" uid="uid://cbdmo02f5apct" path="res://scenes/game/levels/level0/level_0_choice.tscn" id="2_x1otg"]
 [ext_resource type="PackedScene" uid="uid://c1mhndwrvhcew" path="res://scenes/game/levels/level2/level_2_choice.tscn" id="3_q6hb6"]
 [ext_resource type="PackedScene" uid="uid://dw108it2mkskx" path="res://scenes/menu/main_menu.tscn" id="3_wtnip"]
 [ext_resource type="PackedScene" uid="uid://bgt7lo8rbtqnj" path="res://scenes/game/levels/level3/level_3_choice.tscn" id="4_5i0tg"]
 [ext_resource type="Texture2D" uid="uid://bf7rlms3i6pdp" path="res://ui/arrow_decorative_w_small.png" id="5_jy3l0"]
+[ext_resource type="Texture2D" uid="uid://d34gu38en341x" path="res://ui/level_container.png" id="6_cvs8a"]
+[ext_resource type="Texture2D" uid="uid://uw6ramwxplt0" path="res://ui/fonts/level0_text.svg" id="7_3lord"]
+[ext_resource type="Texture2D" uid="uid://cs3wohuejpvnh" path="res://ui/fonts/level1_text.svg" id="7_23swx"]
+[ext_resource type="Texture2D" uid="uid://dce3auvmcwlmu" path="res://ui/fonts/level2_text.svg" id="8_68xd7"]
+[ext_resource type="Texture2D" uid="uid://d2fak0kstfwgs" path="res://ui/fonts/level3_text.svg" id="9_qvsgj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e5ptf"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+bg_color = Color(1, 1, 1, 1)
 border_width_left = 6
 border_width_top = 6
 border_width_right = 6
@@ -20,7 +26,7 @@ corner_radius_bottom_right = 60
 corner_radius_bottom_left = 60
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0cqtf"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+bg_color = Color(1, 1, 1, 1)
 border_width_left = 6
 border_width_top = 6
 border_width_right = 6
@@ -31,10 +37,11 @@ corner_radius_top_right = 60
 corner_radius_bottom_right = 60
 corner_radius_bottom_left = 60
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6aktd"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vopcc"]
+texture = ExtResource("6_cvs8a")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hvc55"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+bg_color = Color(1, 1, 1, 1)
 border_width_left = 6
 border_width_top = 6
 border_width_right = 6
@@ -45,8 +52,11 @@ corner_radius_top_right = 60
 corner_radius_bottom_right = 60
 corner_radius_bottom_left = 60
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e0rcd"]
+texture = ExtResource("6_cvs8a")
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lfrn8"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+bg_color = Color(1, 1, 1, 1)
 border_width_left = 6
 border_width_top = 6
 border_width_right = 6
@@ -58,7 +68,7 @@ corner_radius_bottom_right = 60
 corner_radius_bottom_left = 60
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5i0tg"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+bg_color = Color(1, 1, 1, 1)
 border_width_left = 6
 border_width_top = 6
 border_width_right = 6
@@ -69,7 +79,8 @@ corner_radius_top_right = 60
 corner_radius_bottom_right = 60
 corner_radius_bottom_left = 60
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bdhmt"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lk2kp"]
+texture = ExtResource("6_cvs8a")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_62b73"]
 
@@ -79,6 +90,7 @@ corner_radius_bottom_left = 60
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_xwhwq")
+level_0 = ExtResource("2_x1otg")
 level_1 = ExtResource("2_is6fr")
 level_2 = ExtResource("3_q6hb6")
 level_3 = ExtResource("4_5i0tg")
@@ -87,38 +99,67 @@ level_3 = ExtResource("4_5i0tg")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Level1Button" type="Button" parent="LevelsMenu"]
-layout_mode = 0
-offset_left = 122.0
-offset_top = 366.0
-offset_right = 606.0
-offset_bottom = 1002.0
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelsMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -868.0
+offset_top = -149.0
+offset_right = 868.0
+offset_bottom = 410.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+
+[node name="Level0Button" type="Button" parent="LevelsMenu/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_styles/hover = SubResource("StyleBoxFlat_e5ptf")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_0cqtf")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_6aktd")
+theme_override_styles/normal = SubResource("StyleBoxTexture_vopcc")
+icon = ExtResource("7_3lord")
+icon_alignment = 1
 
-[node name="Level2Button" type="Button" parent="LevelsMenu"]
-layout_mode = 0
-offset_left = 718.0
-offset_top = 364.0
-offset_right = 1202.0
-offset_bottom = 1000.0
+[node name="Level1Button" type="Button" parent="LevelsMenu/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/hover = SubResource("StyleBoxFlat_e5ptf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0cqtf")
+theme_override_styles/normal = SubResource("StyleBoxTexture_vopcc")
+icon = ExtResource("7_23swx")
+icon_alignment = 1
+
+[node name="Level2Button" type="Button" parent="LevelsMenu/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_styles/hover = SubResource("StyleBoxFlat_e5ptf")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_hvc55")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_6aktd")
+theme_override_styles/normal = SubResource("StyleBoxTexture_e0rcd")
+icon = ExtResource("8_68xd7")
+icon_alignment = 1
 
-[node name="Level3Button" type="Button" parent="LevelsMenu"]
-layout_mode = 0
-offset_left = 1314.0
-offset_top = 365.0
-offset_right = 1798.0
-offset_bottom = 1001.0
+[node name="Level3Button" type="Button" parent="LevelsMenu/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_styles/hover = SubResource("StyleBoxFlat_lfrn8")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_5i0tg")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_bdhmt")
+theme_override_styles/normal = SubResource("StyleBoxTexture_lk2kp")
+icon = ExtResource("9_qvsgj")
+icon_alignment = 1
 
 [node name="BackButton" type="Button" parent="."]
 offset_left = 50.0
@@ -133,7 +174,8 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_rqfwa")
 
 [node name="Levels" type="Node2D" parent="."]
 
-[connection signal="pressed" from="LevelsMenu/Level1Button" to="." method="_on_level_1_button_pressed"]
-[connection signal="pressed" from="LevelsMenu/Level2Button" to="." method="_on_level_2_button_pressed"]
-[connection signal="pressed" from="LevelsMenu/Level3Button" to="." method="_on_level_3_button_pressed"]
+[connection signal="pressed" from="LevelsMenu/HBoxContainer/Level0Button" to="." method="_on_level_0_button_pressed"]
+[connection signal="pressed" from="LevelsMenu/HBoxContainer/Level1Button" to="." method="_on_level_1_button_pressed"]
+[connection signal="pressed" from="LevelsMenu/HBoxContainer/Level2Button" to="." method="_on_level_2_button_pressed"]
+[connection signal="pressed" from="LevelsMenu/HBoxContainer/Level3Button" to="." method="_on_level_3_button_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
