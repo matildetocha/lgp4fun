@@ -4,6 +4,7 @@ signal populate
 signal go_back
 signal show_level_stats
 signal timeout
+signal docker_ffmpeg_done(exit_code: int, output: String)
 
 @export var loading_scene: PackedScene
 var loading_screen: CanvasLayer
@@ -21,7 +22,8 @@ var loading_screen: CanvasLayer
 @onready var right_color_rect: ColorRect = $UI/VocabControl/HBoxContainer/Right/ColorRect
 
 const MAX_VOCAB = 5
-const VIDEO_CACHE_PATH = "user://cache/"
+const IMAGE_CACHE_PATH = "user://cache/images"
+const VIDEO_CACHE_PATH = "user://cache/videos"
 
 var current_word = []
 var counter = 1
@@ -70,25 +72,78 @@ func _on_signs_fetched(signs: Array) -> void:
 	for s in level_signs:
 		var vocab = []
 		vocab.append(s["name"].to_lower())
-		
+
+		# Image handling
 		if (s["image"]):
-			var resp = await image_http_request.async_request(s["image"])
-			var img = Image.new()
-			var err = img.load_png_from_buffer(resp.bytes)
-			if resp.success():
-				if err == OK:
-					var texture = ImageTexture.create_from_image(img)
-					vocab.append(texture)
+			var file = s["name"].to_lower() + ".png"
+			var image_path = IMAGE_CACHE_PATH + "/" + file
+			var dir = DirAccess.open(IMAGE_CACHE_PATH)
+			
+			if file in dir.get_files():
+					var img = Image.new()
+					var err = img.load(image_path)
+					if err == OK:
+							var texture = ImageTexture.create_from_image(img)
+							vocab.append(texture)
+			else:
+					var resp = await image_http_request.async_request(s["image"])
+					var img = Image.new()
+					var err = img.load_png_from_buffer(resp.bytes)
+					if resp.success():
+							if err == OK:
+									# Save image to cache
+									img.save_png(image_path)
+									var texture = ImageTexture.create_from_image(img)
+									vocab.append(texture)
+		
+		# Video handling
+		var video_file = s["name"].to_lower() + ".ogv"
+		var video_path = VIDEO_CACHE_PATH + "/" + video_file
+		var video_dir = DirAccess.open(VIDEO_CACHE_PATH)
 		
 		if (s["game_video"]):
-			var file = s["name"].to_lower() + ".ogv"
-			var dir = DirAccess.open(VIDEO_CACHE_PATH)
-			
-			if file not in dir.get_files():
-				video_http_request.download_file = VIDEO_CACHE_PATH + file
-				await video_http_request.async_request(s["game_video"])
+				if video_file not in video_dir.get_files():
+						video_http_request.download_file = video_path
+						await video_http_request.async_request(s["game_video"])
+				vocab.append(video_path)
+		
+		# else:
+		# 		var temp_mp4 = VIDEO_CACHE_PATH + "/" + s["name"].to_lower() + ".mp4"
+		# 		var ogv_path = temp_mp4.replace(".mp4", ".ogv")
+		# 		var temp_mp4_abs = ProjectSettings.globalize_path(temp_mp4)
+		# 		var ogv_path_abs = ProjectSettings.globalize_path(ogv_path)
 				
-			vocab.append(VIDEO_CACHE_PATH + file)
+		# 		video_http_request.download_file = temp_mp4
+		# 		await video_http_request.async_request(s["video"])
+				
+		# 		# Use the cache dir as the mount point and refer to files as /work/<name> inside the container
+		# 		var work_dir_abs = ProjectSettings.globalize_path(VIDEO_CACHE_PATH)
+		# 		var in_name = temp_mp4.get_file()
+		# 		var out_name = ogv_path.get_file()
+
+		# 		# Run docker/ffmpeg asynchronously to avoid blocking the main thread
+		# 		var exit_code := await _run_docker_ffmpeg_async(work_dir_abs, in_name, out_name)
+		# 		if exit_code != 0:
+		# 			push_error("docker/ffmpeg failed converting %s -> %s" % [in_name, out_name])
+		# 		else:
+		# 			video_dir.remove(temp_mp4.get_file())
+
+				# Upload to Supabase Storage
+				# var bucket_name = "lgp4fun"
+
+				# var upload_task : StorageTask = await Supabase.storage.from(bucket_name).upload(video_file, VIDEO_CACHE_PATH).completed
+				# print("Upload data: ", upload_task.data, " || error: ", upload_task.error)
+
+				# # Get public URL for the uploaded video
+				# var public_url = Supabase.storage.from(bucket_name).get_public_url(video_file)
+				# #var public_url = public_url_task.data.url if public_url_task.data.has("url") else ""
+				# print("Public URL: ", public_url)
+				
+				# # Update s["game_video"] in your database
+				# var update_query = SupabaseQuery.new().from("signs").update({ "game_video": public_url }).eq("name", s["name"])
+				# Supabase.database.query(update_query)
+				
+				# vocab.append(ogv_path)
 			
 		vocab_words.append(vocab)
 	
@@ -191,3 +246,33 @@ func reset_word() -> void:
 
 func _on_timer_timeout() -> void:
 	timeout.emit()
+
+# --- Async docker helpers ---
+
+func _run_docker_ffmpeg_async(work_dir_abs: String, in_name: String, out_name: String) -> int:
+	var ffmpeg_args := PackedStringArray([
+		"run", "--rm",
+		"-v", work_dir_abs + ":/work",
+		"-w", "/work",
+		"lscr.io/linuxserver/ffmpeg:latest",
+		"-y",
+		"-i", "/work/" + in_name,
+		"-c:v", "libtheora", "-q:v", "5",
+		"/work/" + out_name
+	])
+
+	var thread := Thread.new()
+	thread.start(Callable(self, "_docker_ffmpeg_thread").bind(ffmpeg_args))
+
+	var result = await docker_ffmpeg_done
+	thread.wait_to_finish()
+	return int(result[0])
+
+func _docker_ffmpeg_thread(ffmpeg_args: PackedStringArray) -> void:
+	var output := []
+	var code := OS.execute("/usr/local/bin/docker", ffmpeg_args, output, true)
+	# emit back on main thread
+	call_deferred("_emit_docker_ffmpeg_done", code, "\n".join(output))
+
+func _emit_docker_ffmpeg_done(code: int, out: String) -> void:
+	docker_ffmpeg_done.emit(code, out)

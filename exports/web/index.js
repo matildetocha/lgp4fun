@@ -153,7 +153,7 @@ const Preloader = /** @constructor */ function () { // eslint-disable-line no-un
 		}), { headers: response.headers });
 	}
 
-function loadFetch(file, tracker, fileSize, raw) {
+	function loadFetch(file, tracker, fileSize, raw) {
 		var p_file = file;
 
 		tracker[file] = {

@@ -58,7 +58,8 @@ var loading_screen: CanvasLayer
 @onready var video_http_request: AwaitableHTTPRequest = $VideoHTTPRequest
 
 const MAX_VOCAB = 5
-const VIDEO_CACHE_PATH = "user://cache/"
+const IMAGE_CACHE_PATH = "user://cache/images"
+const VIDEO_CACHE_PATH = "user://cache/videos"
 const VIDEO_PATH = "res://assets/dictionary/temas/videos/"
 
 var current_word = ""
@@ -103,24 +104,40 @@ func _on_signs_fetched(signs: Array) -> void:
 		var challenge = remove_random_syllable(s["name"])
 		vocab.append(challenge)
 		
+		# Image handling
 		if (s["image"]):
-			var resp = await image_http_request.async_request(s["image"])
-			var img = Image.new()
-			var err = img.load_png_from_buffer(resp.bytes)
-			if resp.success():
-				if err == OK:
-					var texture = ImageTexture.create_from_image(img)
-					vocab.append(texture)
+			var file = s["name"].to_lower() + ".png"
+			var image_path = IMAGE_CACHE_PATH + "/" + file
+			var dir = DirAccess.open(IMAGE_CACHE_PATH)
+			
+			if file in dir.get_files():
+					var img = Image.new()
+					var err = img.load(image_path)
+					if err == OK:
+							var texture = ImageTexture.create_from_image(img)
+							vocab.append(texture)
+			else:
+					var resp = await image_http_request.async_request(s["image"])
+					var img = Image.new()
+					var err = img.load_png_from_buffer(resp.bytes)
+					if resp.success():
+							if err == OK:
+									# Save image to cache
+									img.save_png(image_path)
+									var texture = ImageTexture.create_from_image(img)
+									vocab.append(texture)
 		
+		# Video handling		
 		if (s["game_video"]):
 			var file = s["name"].to_lower() + ".ogv"
+			var video_path = VIDEO_CACHE_PATH + "/" + file
 			var dir = DirAccess.open(VIDEO_CACHE_PATH)
 			
 			if file not in dir.get_files():
-				video_http_request.download_file = VIDEO_CACHE_PATH + file
-				await video_http_request.async_request(s["game_video"])
-				
-			vocab.append(VIDEO_CACHE_PATH + file)
+					video_http_request.download_file = video_path
+					await video_http_request.async_request(s["game_video"])
+					
+			vocab.append(video_path)
 			
 		vocab_words.append(vocab)
 	
