@@ -5,6 +5,7 @@ class_name SupabaseQuery
 var query_struct : Dictionary = {
 	table = "",
 	select = PackedStringArray([]),
+	cs = PackedStringArray([]),
 	order = PackedStringArray([]),
 	Or = PackedStringArray([]),
 	eq = PackedStringArray([]),
@@ -48,6 +49,7 @@ enum Nullsorder {
    }
 
 enum Filters {
+	CONTAINS,
 	EQUAL,
 	NOT_EQUAL,
 	GREATER_THAN,
@@ -86,7 +88,7 @@ func build_query() -> String:
 				"select", "order":
 					if query_struct[key].is_empty(): continue
 					query += (key + "=" + ",".join(PackedStringArray(query_struct[key])))
-				"eq", "neq", "lt", "gt", "lte", "gte", "like", "ilike", "Is", "In", "fts", "plfts", "phfts", "wfts":
+				"cs", "eq", "neq", "lt", "gt", "lte", "gte", "like", "ilike", "Is", "In", "fts", "plfts", "phfts", "wfts":
 					query += "&".join(PackedStringArray(query_struct[key]))
 				"Or":
 					query += "or=(%s)"%[",".join(query_struct[key])]
@@ -163,6 +165,7 @@ func filter(column : String, filter : int, value : String, _props : Dictionary =
 func match_filter(filter : int) -> String:
 	var filter_str : String
 	match filter:
+		Filters.CONTAINS: filter_str = "cs"
 		Filters.EQUAL: filter_str = "eq"
 		Filters.FTS: filter_str = "fts"
 		Filters.ILIKE: filter_str = "ilike"
@@ -186,6 +189,24 @@ func match(query_dict : Dictionary) -> SupabaseQuery:
 		eq(key, query_dict[key])
 	return self
 
+# Match rows whose array/JSON/range column contains every supplied value.
+# Arrays are converted to the PostgreSQL array literal expected by PostgREST.
+func contains(column : String, value : Variant) -> SupabaseQuery:
+	var filter_value := ""
+	if value is Array or value is PackedStringArray:
+		var escaped_values := PackedStringArray()
+		for item in value:
+			var escaped_item := str(item).replace("\\", "\\\\").replace("\"", "\\\"")
+			escaped_values.append("\"%s\"" % escaped_item)
+		filter_value = ("{%s}" % ",".join(escaped_values)).uri_encode()
+	elif value is Dictionary:
+		filter_value = JSON.stringify(value).uri_encode()
+	else:
+		# Keep string support for range literals and preformatted operands.
+		filter_value = str(value).uri_encode()
+	filter(column, Filters.CONTAINS, filter_value)
+	return self
+	
 # Finds all rows whose value on the stated column match the specified value.
 func eq(column : String, value : String) -> SupabaseQuery:
 	filter(column, Filters.EQUAL, value)
@@ -261,6 +282,7 @@ func clean() -> void:
 	query_struct.table = ""
 	query_struct.select = PackedStringArray([])
 	query_struct.order = PackedStringArray([])
+	query_struct.cs = PackedStringArray([])
 	query_struct.eq = PackedStringArray([])
 	query_struct.neq = PackedStringArray([])
 	query_struct.gt = PackedStringArray([])

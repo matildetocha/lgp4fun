@@ -53,7 +53,7 @@ func _ready() -> void:
 	
 	var theme = level2_man.get_theme()
 	
-	var q = SupabaseQuery.new().from("signs").select().eq("theme_flattened", theme.uri_encode())
+	var q = SupabaseQuery.new().from("signs").select().contains("dictionary", ["1º CEB"]).eq("theme_flattened", theme.uri_encode())
 	Supabase.database.query(q)
 	
 	end.connect("end_game", end_level_2)

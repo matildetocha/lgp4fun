@@ -47,15 +47,18 @@ func _on_supabase_error(err: SupabaseDatabaseError) -> void:
 	push_error("Supabase returned an error: %s" % msg)
 
 func _on_button_1_pressed() -> void:
-	selected_theme = "(1ºCEB) CASA E DIVISÕES"
+	# CASA E DIVISÕES
+	selected_theme = "CASA E DIVISÕES"
 	add_child(level_3)
 
 func _on_button_2_pressed() -> void:
-	selected_theme = "(1ºCEB) OBJETOS DA ESCOLA"
+	# OBJETOS DA ESCOLA
+	selected_theme = "OBJETOS DA ESCOLA"
 	add_child(level_3)
 
 func _on_button_3_pressed() -> void:
-	selected_theme = "(1ºCEB) CORES/ PORTUGUÊS"
+	# CORES
+	selected_theme = "CORES"
 	add_child(level_3)
 	
 func level_stats() -> void:
